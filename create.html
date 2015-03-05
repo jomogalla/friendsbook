@@ -1,0 +1,159 @@
+<html ng-app="app">
+<head>
+<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href="./normalize.css" rel="stylesheet">
+<link href="./style.css" rel="stylesheet">
+<style>
+.square-header input{
+	width: 100%;
+	text-align: center;
+}
+.square-body textarea{
+	width: 100%;
+	height: 100px;
+	text-align: center;
+}
+body section{
+	width: 1000px;
+	margin: 40px auto;
+}
+table{
+	width: 100%;
+}
+#debug{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	font: Courier;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="./tingo-controller.js"></script>
+
+</head>
+<body ng-controller="CreateCtrl as vm">
+
+<div id="debug">
+Title: {{vm.gameTitle}}<br>
+Number of Players: {{vm.numberOfPlayers}}<br>
+Players: {{vm.players}}<br>
+Columns: {{vm.ruleSet.columns}}<br>
+Rows: {{vm.ruleSet.rows}}<br>
+Diagonals: {{vm.ruleSet.diagonals}}<br>
+Blackout: {{vm.ruleSet.blackout}}<br>
+<!-- Board Gender: {{vm.}} -->
+</div>
+
+<section id="game-title">
+	<h2> Title </h2>
+	<input type="text" placeholder="game title" ng-model="vm.gameTitle">
+</section>
+<section id="players">
+	<h2> Players </h2>
+	<button ng-click="vm.addPlayer()">add player</button>
+
+	<div class="player-name" ng-repeat="player in vm.players">
+		<label for="player">Name </label>
+		<input name="player" type="text" ng-model="player.name">
+		<label for="gender-interest"> is interested in </label>
+		<select name="gender-interest" ng-model="player.genderInterest" ng-options="gender for gender in vm.boardGenders" ng-change="vm.showGenderSpecificBoards()"></select>
+	</div>
+	
+</section>
+<section id="game-rule-set">
+	<h2> Game Rules </h2>
+	
+	<div class="form-control">
+	<input type="checkbox" name="columns" ng-model="vm.ruleSet.columns">
+	<label for="columns">columns</label>
+	</div>
+	<div class="form-control">
+	<input type="checkbox" name="rows" ng-model="vm.ruleSet.rows">
+	<label for="rows">rows</label>
+	</div>
+	<div class="form-control">
+	<input type="checkbox" name="diagonals" ng-model="vm.ruleSet.diagonals">
+	<label for="diagonals">diagonals</label>
+	</div>
+	<div class="form-control">
+	<input type="checkbox" name="blackout" ng-model="vm.ruleSet.blackout">
+	<label for="blackout">blackout</label>
+	</div>
+	
+</section>
+<!-- <section id="game-gender">
+	<h2> Game Gender </h2>
+	<label for="board-gender">board gender </label>
+	<select ng-model="vm.selectedGender" ng-options="vm.gameGenders" name="board-gender"></select>
+</section> -->
+<section id="game-board">
+	<div ng-show="vm.manBoardSelected">
+		<h2> Man Game Board </h2>
+		<table>
+			<tbody>
+				<tr ng-repeat="row in vm.manBoard">
+					<td ng-repeat="square in row">
+						<div class="square-header">
+							<input type="text" placeholder="title" ng-model="square.title">
+						</div>
+						<div class="square-body">
+							<textarea placeholder="description" ng-model="square.body">
+							</textarea>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+	<div ng-show="vm.womanBoardSelected">
+		<h2> Woman Game Board </h2>
+		<table>
+			<tbody>
+				<tr ng-repeat="row in vm.womanBoard">
+					<td ng-repeat="square in row">
+						<div class="square-header">
+							<input type="text" placeholder="title" ng-model="square.title">
+						</div>
+						<div class="square-body">
+							<textarea placeholder="description" ng-model="square.body">
+							</textarea>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+	<div ng-show="vm.neutralBoardSelected">
+		<h2> Neutral Game Board </h2>
+		<table>
+			<tbody>
+				<tr ng-repeat="row in vm.neutralBoard">
+					<td ng-repeat="square in row">
+						<div class="square-header">
+							<input type="text" placeholder="title" ng-model="square.title">
+						</div>
+						<div class="square-body">
+							<textarea placeholder="description" ng-model="square.body">
+							</textarea>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</section>
+<section id="create">
+	<button id="create-game" ng-click="vm.create()">create game</button>
+</section>
+
+<div id="notification" ng-bind="vm.notification">
+</div>
+
+
+</body>
+</html>
