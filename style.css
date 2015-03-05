@@ -1,0 +1,73 @@
+	body{
+		background-color: #f9f9f9;
+	}
+	table{
+		/*width: 750px;*/
+		width: 90%;
+		height: 90%;
+		margin: auto;
+		margin-top: 2%;
+		background-color: white;
+	}
+	tr{
+		height: 150px;
+	}
+	td:hover{
+		background-color: #f9f9f9;
+		cursor: pointer;
+	}
+	td{
+		/*width: 150px;*/
+		width: 20%;
+		height: 20%;
+		border: #f9f9f9 solid 1px;
+		text-align: center;
+		position: relative;
+		vertical-align: top;
+	}
+	td .square-header{
+/*		background-color: #eee;
+		border-bottom: 1px solid #E4E4E4;*/
+		/*top: 0px;*/
+		/*position: absolute;*/
+		width: 100%;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		/*font-weight: 600;*/
+		color: #666666;
+	}
+	td .square-body{
+		color: #b5b5b5;
+		padding:5px;
+		font-size: 0.85em;
+	}
+	.completed-square{
+		color: rgba(0, 128, 0, 0.5);
+		position: absolute;
+		top:15%;
+		/*bottom: 0px;*/
+		right: 0px;
+		left:0px;
+	}
+	#notification{
+		text-align: center;
+		font-size: 2em;
+		color: green;
+		margin: 5px;
+	}
+	#rule-set{
+		position: fixed;
+		bottom: 0px;
+		right: 0px;
+		margin: 5px;
+	}
+	#rule-set input{
+		margin-left:10px;
+	}
+	#reset{
+		position: fixed;
+		left: 0px;
+		bottom:0px;
+		margin: 5px;
+		cursor: pointer;
+	}
