@@ -22,7 +22,7 @@ table{
 	width: 100%;
 }
 #debug{
-	position: absolute;
+	position: fixed;
 	top: 0px;
 	right: 0px;
 	font: Courier;
@@ -37,18 +37,27 @@ table{
 
 <div id="debug">
 Title: {{vm.gameTitle}}<br>
+Game Type: {{vm.gameType}}<br>
 Number of Players: {{vm.numberOfPlayers}}<br>
-Players: {{vm.players}}<br>
+Players:
+<div ng-repeat="player in vm.players">  {{player.name}} - {{player.boardNumber}} - {{player.genderInterest}}</div>
 Columns: {{vm.ruleSet.columns}}<br>
 Rows: {{vm.ruleSet.rows}}<br>
 Diagonals: {{vm.ruleSet.diagonals}}<br>
 Blackout: {{vm.ruleSet.blackout}}<br>
+Randomize: {{vm.randomizeBoard}}<br>
+Board Visibility: {{vm.boardVisibility}}
 <!-- Board Gender: {{vm.}} -->
 </div>
 
 <section id="game-title">
 	<h2> Title </h2>
 	<input type="text" placeholder="game title" ng-model="vm.gameTitle">
+</section>
+<section id="game-type">
+	<h2> Game Type </h2>
+	<label name="game-type">Type </label>
+	<select name="gender-interest" ng-model="vm.gameType" ng-options="gameType for gameType in vm.gameTypes"></select>
 </section>
 <section id="players">
 	<h2> Players </h2>
@@ -57,43 +66,53 @@ Blackout: {{vm.ruleSet.blackout}}<br>
 	<div class="player-name" ng-repeat="player in vm.players">
 		<label for="player">Name </label>
 		<input name="player" type="text" ng-model="player.name">
-		<label for="gender-interest"> is interested in </label>
-		<select name="gender-interest" ng-model="player.genderInterest" ng-options="gender for gender in vm.boardGenders" ng-change="vm.showGenderSpecificBoards()"></select>
+		<label for="gender-interest" ng-if="vm.gameType === 'dating'"> is interested in </label>
+		<select name="gender-interest" ng-model="player.genderInterest" ng-options="gender for gender in vm.boardGenders" ng-change="vm.showGenderSpecificBoards()" ng-if="vm.gameType === 'dating'"></select>
 	</div>
 	
 </section>
+
 <section id="game-rule-set">
 	<h2> Game Rules </h2>
 	
 	<div class="form-control">
-	<input type="checkbox" name="columns" ng-model="vm.ruleSet.columns">
-	<label for="columns">columns</label>
+		<input type="checkbox" name="columns" ng-model="vm.ruleSet.columns">
+		<label for="columns">columns</label>
 	</div>
 	<div class="form-control">
-	<input type="checkbox" name="rows" ng-model="vm.ruleSet.rows">
-	<label for="rows">rows</label>
+		<input type="checkbox" name="rows" ng-model="vm.ruleSet.rows">
+		<label for="rows">rows</label>
 	</div>
 	<div class="form-control">
-	<input type="checkbox" name="diagonals" ng-model="vm.ruleSet.diagonals">
-	<label for="diagonals">diagonals</label>
+		<input type="checkbox" name="diagonals" ng-model="vm.ruleSet.diagonals">
+		<label for="diagonals">diagonals</label>
 	</div>
 	<div class="form-control">
-	<input type="checkbox" name="blackout" ng-model="vm.ruleSet.blackout">
-	<label for="blackout">blackout</label>
+		<input type="checkbox" name="blackout" ng-model="vm.ruleSet.blackout">
+		<label for="blackout">blackout</label>
 	</div>
+	<br>
+
 	
 </section>
-<!-- <section id="game-gender">
-	<h2> Game Gender </h2>
-	<label for="board-gender">board gender </label>
-	<select ng-model="vm.selectedGender" ng-options="vm.gameGenders" name="board-gender"></select>
-</section> -->
 <section id="game-board">
-	<div ng-show="vm.manBoardSelected">
-		<h2> Man Game Board </h2>
+	<h2> Game Board </h2>
+	<div class="form-control">
+		<input type="checkbox" name="randomize" ng-model="vm.randomizeBoard">
+		<label for="randomize"> shuffle board tiles</label>
+	</div>
+	<div class="form-control">
+		<input type="checkbox" name="board-visibility" ng-model="vm.boardVisibility">
+		<label for="board-visibility"> everyone's board is visible</label>
+	</div>
+	<div ng-if="vm.gameType === 'regular'">
+		Your board will be generated on the fly.
+	</div>
+	<div ng-if="vm.gameType === 'i spy'">
+		<h3> i spy a</h3>
 		<table>
 			<tbody>
-				<tr ng-repeat="row in vm.manBoard">
+				<tr ng-repeat="row in vm.iSpyBoard">
 					<td ng-repeat="square in row">
 						<div class="square-header">
 							<input type="text" placeholder="title" ng-model="square.title">
@@ -108,43 +127,64 @@ Blackout: {{vm.ruleSet.blackout}}<br>
 
 		</table>
 	</div>
-	<div ng-show="vm.womanBoardSelected">
-		<h2> Woman Game Board </h2>
-		<table>
-			<tbody>
-				<tr ng-repeat="row in vm.womanBoard">
-					<td ng-repeat="square in row">
-						<div class="square-header">
-							<input type="text" placeholder="title" ng-model="square.title">
-						</div>
-						<div class="square-body">
-							<textarea placeholder="description" ng-model="square.body">
-							</textarea>
-						</div>
-					</td>
-				</tr>
-			</tbody>
+	<div ng-if="vm.gameType === 'dating'">
+		<div ng-show="vm.manBoardSelected">
+			<h3> interested in men board</h3>
+			<table>
+				<tbody>
+					<tr ng-repeat="row in vm.manBoard">
+						<td ng-repeat="square in row">
+							<div class="square-header">
+								<input type="text" placeholder="title" ng-model="square.title">
+							</div>
+							<div class="square-body">
+								<textarea placeholder="description" ng-model="square.body">
+								</textarea>
+							</div>
+						</td>
+					</tr>
+				</tbody>
 
-		</table>
-	</div>
-	<div ng-show="vm.neutralBoardSelected">
-		<h2> Neutral Game Board </h2>
-		<table>
-			<tbody>
-				<tr ng-repeat="row in vm.neutralBoard">
-					<td ng-repeat="square in row">
-						<div class="square-header">
-							<input type="text" placeholder="title" ng-model="square.title">
-						</div>
-						<div class="square-body">
-							<textarea placeholder="description" ng-model="square.body">
-							</textarea>
-						</div>
-					</td>
-				</tr>
-			</tbody>
+			</table>
+		</div>
+		<div ng-show="vm.womanBoardSelected">
+			<h3> interested in women board</h3>
+			<table>
+				<tbody>
+					<tr ng-repeat="row in vm.womanBoard">
+						<td ng-repeat="square in row">
+							<div class="square-header">
+								<input type="text" placeholder="title" ng-model="square.title">
+							</div>
+							<div class="square-body">
+								<textarea placeholder="description" ng-model="square.body">
+								</textarea>
+							</div>
+						</td>
+					</tr>
+				</tbody>
 
-		</table>
+			</table>
+		</div>
+		<div ng-show="vm.neutralBoardSelected">
+			<h3> interested in whatever board</h3>
+			<table>
+				<tbody>
+					<tr ng-repeat="row in vm.neutralBoard">
+						<td ng-repeat="square in row">
+							<div class="square-header">
+								<input type="text" placeholder="title" ng-model="square.title">
+							</div>
+							<div class="square-body">
+								<textarea placeholder="description" ng-model="square.body">
+								</textarea>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
 	</div>
 </section>
 <section id="create">

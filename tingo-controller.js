@@ -8,7 +8,8 @@
 
 	var manBoard,
 		womanBoard,
-		neutralBoard;
+		neutralBoard,
+		iSpyBoard;
 
 	function TingoCtrl(){
 		var self = this;
@@ -126,6 +127,7 @@
 
 		self.addPlayer = addPlayer;
 		self.showGenderSpecificBoards = showGenderSpecificBoards;
+		self.createGame = createGame;
 
 		self.neutralBoardSelected = false;
 		self.manBoardSelected = false;
@@ -133,6 +135,14 @@
 
 		self.boardGenders = ["neutral", "men", "women"];
 		// self.selectedGender = "female";
+
+		self.randomizeBoard = false; //Only used during gameboard creation
+		self.boardVisibility = true;
+
+		self.gameType = "regular";
+		self.gameTypes = ["regular", "i spy", "dating",];
+
+		self.boards;
 
 		activate();
 
@@ -165,6 +175,7 @@
 		function addPlayer(){
 			var newPlayer = {
 				"name":"",
+				"boardNumber": self.numberOfPlayers,
 				"genderInterest":"neutral"
 			};
 			self.numberOfPlayers++;
@@ -176,6 +187,40 @@
 			self.manBoard  = manBoard;
 			self.womanBoard = womanBoard;
 			self.neutralBoard = neutralBoard;
+			self.iSpyBoard = iSpyBoard;
+		}
+
+		function createGame(){
+			var newGame = {
+				"title": self.gameTitle,
+				"type": self.gameType,
+				"ruleSet": self.ruleSet,
+				"boardVisibility": self.boardVisibility,
+				"players": self.players,
+				"boards": 4
+			};
+		}
+		function generateBoards(){
+			if(self.gameType === 'regular'){
+				// grab an empty board.
+				// generate random numbers
+				// put the numbers into the board
+
+			}else if(self.gameType === 'dating'){
+				// push the correct edited  board into the boards array
+				// *correct* based on player[i]'s gender interest
+				// add an id of i to the board
+			}else{
+				for(var i = 0; i < self.numberOfPlayers; i++){
+					// push the edited board based on game type
+					// into the boards array, with an id of i
+				}
+			}
+			if(self.randomizeBoard === true){
+				for(var i = 0; i < self.numberOfPlayers; i++){
+					// GO THROUGH AND RANDOMIZE EVERY BOARD, leaving the free space
+				}
+			}
 		}
 	}
 
@@ -514,6 +559,119 @@
 					},{
 						title: "Exotic Pet Boy",
 						body: "Must have a picture with a lion, tiger or bear",
+						completed: false
+					}
+				]
+			];
+			iSpyBoard = [
+				[
+					{
+						title: "Red Fire Hydrant",
+						body: "",
+						completed: false
+					},{
+						title: "Person walking dog",
+						body: "",
+						completed: false
+					},{
+						title: "Police officer",
+						body: "",
+						completed: false
+					},{
+						title: "Motorcycle",
+						body: "",
+						completed: false
+					},{
+						title: "Skateboarder",
+						body: "",
+						completed: false
+					}
+				],[
+					{
+						title: "A bookstore",
+						body: "",
+						completed: false
+					},{
+						title: "Illegaly parked car",
+						body: "",
+						completed: false
+					},{
+						title: "Train",
+						body: "",
+						completed: false
+					},{
+						title: "",
+						body: "",
+						completed: false
+					},{
+						title: "",
+						body: "",
+						completed: false
+					}
+				],[
+					{
+						title: "",
+						body: "",
+						completed: false
+					},{
+						title: "A waterfall",
+						body: "",
+						completed: false
+					},{
+						title: "Free Space",
+						body: "More room for activities",
+						completed: true
+					},{
+						title: "A Bus",
+						body: "",
+						completed: false
+					},{
+						title: "",
+						body: "",
+						completed: false
+					}
+				],[
+					{
+						title: "",
+						body: "",
+						completed: false
+					},{
+						title: "",
+						body: "",
+						completed: false
+					},{
+						title: "A cactus",
+						body: "",
+						completed: false
+					},{
+						title: "",
+						body: "",
+						completed: false
+					},{
+						title: "Cheeseburger",
+						body: "Someone eating a cheeseburger",
+						completed: false
+					}
+				],[
+					{
+						title: "",
+						body: "",
+						completed: false
+					},{
+						title: "",
+						body: "",
+						completed: false
+					},{
+						title: "A brick wall",
+						body: "",
+						completed: false
+					},{
+						title: "",
+						body: "",
+						completed: false
+					},{
+						title: "",
+						body: "",
 						completed: false
 					}
 				]
