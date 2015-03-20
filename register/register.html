@@ -1,0 +1,17 @@
+<div class="row">
+	<h3> create a person </h3>
+	<form class="form-inline form-create" ng-submit="vm.createPerson(credentials)" novalidate>
+		<div class="form-group">
+			<input name="name" class="form-control" placeholder="email here" ng-model="credentials.email">
+		</div>
+		<div class="form-group">
+			<input name="password" type="password" class="form-control" placeholder="password here" ng-model="credentials.password">
+		</div>
+		<button class="btn" type="submit">make a person</button>
+	</form>
+</div>
+<div class="row">
+	<a href="#/login" class="btn"> or login -> </a>
+</div>
+
+

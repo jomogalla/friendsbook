@@ -1,0 +1,7 @@
+<h4 ng-repeat="group in vm.groups"> 
+	<a href="#/group/{{group.$id}}"><span  ng-show="!group.title">Untitled</span>{{group.title}} - <small>{{group.description}} <span  ng-show="!group.description">AND DESCRIPTIONLESS!</span></small></a>
+</h4>
+<br>
+<h4>
+<a class="" href="#/create-group"><small>or</small> create a new group!</a>
+</h4>
