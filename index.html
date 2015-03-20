@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app">
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link href="./normalize.css" rel="stylesheet">
@@ -13,6 +14,7 @@
 		// <script src="./vendorJS/firebase.js"></script>
 		// <script src="./vendorJS/angularfire.min.js"></script> -->
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
 		<script src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>
@@ -21,6 +23,7 @@
 
 		<script src="./app.js"></script>
 		<script src="./profile/friends-filter.js"></script>
+		<script src="./group/chat-reverse-filter.js"></script>
 		<script src="./create-group/create-group-controller.js"></script>
 		<script src="./register/register-controller.js"></script>
 		<script src="./login/login-controller.js"></script>
@@ -29,6 +32,8 @@
 		<script src="./group/group-controller.js"></script>
 		<script src="./home/home-controller.js"></script>
 		<script src="./navbar/navbar-controller.js"></script>
+		<script src="./group/chat-directive.js"></script>
+
 
 
 
@@ -40,7 +45,7 @@
 
 	</head>
 	<body role="document">
-		<nav class="navbar navbar-fixed-top" ng-include="'navbar/navbar.html'" ng-controller="NavbarCtrl as nav">
+		<nav class="navbar" ng-include="'navbar/navbar.html'" ng-controller="NavbarCtrl as nav">
 		</nav>
 
 		

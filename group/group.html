@@ -14,23 +14,31 @@
 
 <hr>
 
-<div class="row">
+<div class="chat">
+	<div class="well well-sm">
+		<ul class="list-unstyled">
+			<li ng-repeat="message in vm.group.messages"> 
+				<span class="text-info">{{message.user.username}}:</span> {{message.text}}
+			</li>
+		</ul>
+	</div>
 	<form class="form form-horizontal" ng-submit="vm.sayIt()" name="chatInput" novalidate>
 		<div class="form-group">
-			<div class="col-md-10">
+			<div class="col-md-10 col-xs-9">
 				<input type="text" placeholder="friendsbook chat" class="form-control" ng-model="vm.inputText" name="inputText" required="" autofocus>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-2 col-xs-3">
 				<button type="submit" class="btn btn-block btn-info" ng-disabled="!chatInput.$valid">say it</button>
 			</div>
 		</div>
 	</form>
 </div>
+<script>
+	var messageList = $('.well ul');
+	var well = $('.well');
 
-<div class="row">
-	<ul class="list-unstyled well">
-		<li ng-repeat="message in vm.group.messages"> 
-			<span class="text-info">{{message.user.username}}:</span> {{message.text}}
-		</li>
-	</ul>
-</div>
+
+	messageList.bind('DOMNodeInserted', function(){
+		well[0].scrollTop = well[0].scrollHeight;
+	});
+</script>

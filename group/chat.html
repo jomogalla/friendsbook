@@ -1,0 +1,19 @@
+<div class="container chat">
+	<div class="well well-sm">
+		<ul class="list-unstyled">
+			<li ng-repeat="message in vm.group.messages"> 
+				<span class="text-info">{{message.user.username}}:</span> {{message.text}}
+			</li>
+		</ul>
+	</div>
+	<form class="form form-horizontal" ng-submit="vm.sayIt()" name="chatInput" novalidate>
+		<div class="form-group">
+			<div class="col-md-10">
+				<input type="text" placeholder="friendsbook chat" class="form-control" ng-model="vm.inputText" name="inputText" required="" autofocus>
+			</div>
+			<div class="col-md-2">
+				<button type="submit" class="btn btn-block btn-info" ng-disabled="!chatInput.$valid">say it</button>
+			</div>
+		</div>
+	</form>
+</div>
