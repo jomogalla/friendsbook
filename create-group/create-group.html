@@ -7,7 +7,7 @@
 	<h5> do you want a description?</h5>
 	<textarea ng-model="vm.group.description" type="text"  class="form-control"></textarea>
 </div>
-<div class="row">
+<!-- <div class="row">
 	<div class="col-md-6">
 		<h5> group membs </h5>
 		<table class="table table-hover">
@@ -28,6 +28,11 @@
 			</tr>
 		</table>
 	</div>
+
+</div> -->
+<div class="row">
+	<label for="private">do you want this group private?</label>
+	<input name="private" type="checkbox" ng-model="vm.group.private">
 
 </div>
 

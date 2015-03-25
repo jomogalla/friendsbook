@@ -4,9 +4,9 @@
 		<small>
 			{{vm.group.description}}
 			<span class="pull-right">
-				<span ng-click="vm.inspectProfile()" class="label label-primary"> {{vm.currentUser.username}} </span>
-				<span ng-repeat="member in vm.group.members" ng-click="vm.inspectProfile()" class="label label-success"> {{member.name}} </span>
-				<span ng-click="addGroupMember()" class="label label-warning" title="add new group member">+</span>
+				<a href="#/profile/{{vm.currentUser.uid}}"><span ng-click="vm.inspectProfile()" class="label label-primary"> {{vm.currentUser.username}} </span></a>
+				<a href=""><span ng-repeat="member in vm.group.members" ng-click="vm.inspectProfile()" class="label label-success"> {{member.name}} </span></a>
+				<a href="#/members/{{vm.group.$id}}"><span class="label label-warning" title="add new group member">+</span></a>
 			</span>
 		</small>
 	</h3>
@@ -17,8 +17,9 @@
 <div class="chat">
 	<div class="well well-sm">
 		<ul class="list-unstyled">
-			<li ng-repeat="message in vm.group.messages"> 
-				<span class="text-info">{{message.user.username}}:</span> {{message.text}}
+			<li ng-repeat="message in vm.messages" class="animate-repeat"> 
+				<span class="text-info">{{message.uid}}</span>: {{message.message}}
+				<!-- <span class="text-info" uid="{{message.uid}}"userlink></span>: {{message.text}} -->
 			</li>
 		</ul>
 	</div>

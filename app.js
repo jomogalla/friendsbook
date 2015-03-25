@@ -27,6 +27,12 @@
 				controllerAs: 'vm',
 				authRequired: true
 			})
+			.when('/members/:key', {
+				templateUrl : 'group-members/group-members.html',
+				controller: 'GroupMembersCtrl',
+				controllerAs: 'vm',
+				authRequired: true
+			})
 			.when('/login', {
 				templateUrl : 'login/login.html',
 				controller: 'LoginCtrl',
@@ -34,6 +40,12 @@
 				authRequired: false
 			})
 			.when('/profile', {
+				templateUrl : 'profile/profile.html',
+				controller: 'ProfileCtrl',
+				controllerAs: 'vm',
+				authRequired: true					
+    		})
+    		.when('/profile/:key', {
 				templateUrl : 'profile/profile.html',
 				controller: 'ProfileCtrl',
 				controllerAs: 'vm',

@@ -5,10 +5,10 @@
 		.module('app')
 		.controller('HomeCtrl', HomeCtrl);
 
-	HomeCtrl.$inject = ['Profile', '$rootScope'];
-	function HomeCtrl(Profile, $rootScope){
+	HomeCtrl.$inject = ['People', '$rootScope'];
+	function HomeCtrl(People, $rootScope){
 		self = this;
 
-		self.user = Profile($rootScope.authData.uid);
+		self.user = People.$get($rootScope.authData.uid);
 	}
 })();

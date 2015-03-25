@@ -1,56 +1,23 @@
-<!-- <div class="alert alert-warning" ng-repeat="relationship in vm.relationships" ng-if="relationship.status === 'requested'">
-	{{relationship.personOne}} wants to be your friend!
-	<button ng-click="vm.acceptFriendRequest(relationship)" class="btn btn-link">accept</button>
-	<button ng-click="vm.rejectFriendRequest(relationship)" class="btn btn-link">reject</button>
-</div> -->
 <div class="row">
 	<div class="col-md-4">
 		<!-- <h4> you </h4> -->
 		<img src="" alt="" class="img-thumbnail">
-		<h5><small>email: </small>{{vm.email}}</h5>
+		<!-- <h5><small>email: </small>{{vm.user.email}}</h5> -->
 		<form>
 			<div class="form-group">
 				<label for="userName">username: </label>
 				<input type="text" class="form-control" name="userName" placeholder="user name" ng-model="vm.user.username">
 			</div>
-	<!-- 		<div class="form-group">
-				<input type="text" class="form-control" name="lastName" placeholder="last name">
-			</div>
- -->		<div class="form-group">
-			</div>
-			<!-- <button ng-click="vm.save()" class="btn btn-link btn-block">save</button> -->
 		</form>
- 
-		<div class="row">
+ 	{{vm.currentUser}}
+		<div class="row" ng-show="vm.currentUser">
 			<button ng-click="vm.save()" class="btn btn-link col-md-4">save</button>
-			<button ng-click="vm.delete()" class="btn btn-link col-md-4"> delete </button>
+			<button ng-click="vm.deleteUser()" class="btn btn-link col-md-4"> delete </button>
 			<button ng-click="vm.logout()" class="btn btn-link col-md-4">logout</button>
 		</div>
 		
 	</div>
-<!-- 	<div class="col-md-4">
-		<h4> friends </h4>
-		<table class="table table-hover">
-			<tr ng-repeat="relationship in vm.relationships" ng-if="relationship.status === 'friends'">
-				<td> {{relationship.personOne}} </td>
-				<td> {{relationship.personTwo}} </td>
-				<td> {{relationship.status}} </td>
-			</tr>
-		</table>
-	</div>
-	<div class="col-md-4">
-		<h4> search for friends </h4>
-		<input type="text" class="form-control" placeholder="search for friends" ng-model="search.username">
-		<h5> people on friendsbook </h5>
-		<table class="table table-hover">
-			<tr ng-repeat="user in vm.users | FriendSearch:search.username">
-				<td> {{user.username}} </td>
-				<td> {{search.username}} - {{user.username}}</td>
-				<td> <button class="btn btn-link" ng-click="vm.addFriend(user.uid)">add friend</button></td>
-			</tr>
-		</table>
-	</div>
-</div>-->
+</div>
 
 
 
