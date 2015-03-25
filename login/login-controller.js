@@ -11,7 +11,6 @@
 
 		self.login = login;
 
-
 		function login(credentials){
 			Auth.$authWithPassword({
   				email    : credentials.email,
@@ -25,7 +24,4 @@
       		});
 		}
 	}
-
-	
-
 })();

@@ -12,7 +12,5 @@
 		Groups.$loaded().then(function(){
 			self.groups = Groups;
 		});
-		// self.groups = Groups.$everyone();
-		// console.log(self.groups);
 	}
 })();
