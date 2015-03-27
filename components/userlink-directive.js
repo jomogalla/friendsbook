@@ -5,8 +5,8 @@
 		.module('app')
 		.directive('userlink', UserLink);
 
-	UserLink.$inject = [];
-	function UserLink(){
+	UserLink.$inject = ['Profile'];
+	function UserLink(Profile){
 		var directive = {
 			restrict: 'A',
 			template: '<a href="#/profile/{{message.user.userid}}">{{message.user.username}}</a>',
@@ -15,9 +15,13 @@
 				// SAME AS ABOVE
 				uid: '='
 			},
+			link:link
 		}
 		return directive;
 
+		function link(scope, element, attrs){
+			console.log(scope);
+		}
 		
 	}
 })();

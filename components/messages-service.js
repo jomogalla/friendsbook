@@ -14,9 +14,10 @@
 			$getAll: function(groupKey){
 				return $firebaseObject(ref.child(groupKey));
 			},
-			$add: function(groupKey, uid, message){
+			$add: function(groupKey, uid, name, message){
 				return ref.child(groupKey).push({
 					uid: uid,
+					name: name,
 					message: message
 				});
 			},

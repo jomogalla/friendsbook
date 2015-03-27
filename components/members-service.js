@@ -15,9 +15,9 @@
 				return $firebaseObject(ref.child(groupKey));
 			},
 			$add: function(groupKey, uid){
-				return ref.child(groupKey).child(uid).set(true);
+				return ref.child(groupKey).child(uid).set(false);
 			},
-			// DONE
+			// REMOVE THEM COMPLETELLLYL
 			$remove: function(groupKey, uid){
 				return ref.child(groupKey).child(uid).set(false);
 			},

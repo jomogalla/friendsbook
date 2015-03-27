@@ -2,9 +2,8 @@
 	<div class="navbar-header">
 		<a href="#/" class="navbar-brand" ng-class="{active:nav.isActive('')}">friendsbook</a>
 	</div>
-	<ul class="nav navbar-nav">
+	<ul class="nav navbar-nav" ng-show="!nav.isActive('login')">
 		<li ng-class="{active:nav.isActive('profile')}" role="presentation"><a href="#/profile">Profile</a></li>
 		<li ng-class="{active:nav.isActive('groups')}" role="presentation"><a href="#/groups">Groups</a></li>
 	</ul>
-	<!-- <p class="navbar-text">{{}}</p> -->
 </div>

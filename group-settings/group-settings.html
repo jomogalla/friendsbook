@@ -1,0 +1,34 @@
+<h3> 
+	<a href="#/group/{{vm.group.$id}}">{{vm.group.title}}</a>
+	<small>
+		{{vm.group.description}}
+		<span class="pull-right">
+			<a href="#/chat/{{vm.group.$id}}">chat</a> /
+			<a href="#/members/{{vm.group.$id}}">members</a> /
+			<a href="#/settings/{{vm.group.$id}}" class="active">settings</a>
+		</span>
+	</small>
+</h3>
+
+<hr>
+
+<form class="form" name="editGroup" ng-submit="vm.save()" novalidate>
+	<div class="form-group">
+		<label for="description">what should it be called?</label>
+		<input ng-model="vm.group.title" type="text" class="form-control" required="">
+	</div>
+	<div class="form-group">
+		<label for="description"> do you want a description?</label>
+		<textarea ng-model="vm.group.description" type="text" id="description" class="form-control"></textarea>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" ng-model="vm.group.private"> 
+			keep the group private
+		</label>
+	</div>
+	<div class="row">
+		<a href="#/group/{{vm.groupId}}" class="btn btn-default col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1"> cancel </a>
+		<button class="btn btn-info col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2" type="submit" ng-disabled="!editGroup.$valid"> save </button>	
+	</div>
+</form>

@@ -21,6 +21,11 @@
 			$get: function(uid){
 				return $firebaseObject(ref.child(uid));
 			},
+			$exists: function(uid){
+				ref.child(uid).once("value", function(dataSnapshot){
+					return dataSnapshot.exists();
+				});
+			},
 			// Needs credentials as well.
 			$delete: function (uid){
 				return $firebaseObject(ref.child(uid)).$remove();

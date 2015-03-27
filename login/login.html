@@ -1,15 +1,19 @@
-<div class="row">
-	<h3> login </h3>
-	<form class="form-inline form-create" ng-submit="vm.login(credentials)" novalidate>
-		<div class="form-group">
-			<input name="name" type="email" class="form-control" placeholder="email here" ng-model="credentials.email">
-		</div>
-		<div class="form-group">
-			<input name="password" type="password" class="form-control" placeholder="password here" ng-model="credentials.password">
-		</div>
-		<button class="btn" type="submit">login</button>
-	</form>
-</div>
-<div class="row">
-	<a href="#/register" class="btn"> or register -> </a>
-</div>
+<!-- <h3> login </h3>
+<hr>
+<h5> login with an email and password </h5>
+<form class="form-inline form-create" name="simpleLogin" ng-submit="vm.login(credentials)" novalidate>
+	<div class="form-group">
+		<input name="name" type="email" class="form-control" placeholder="email here" ng-model="credentials.email" required="">
+	</div>
+	<div class="form-group">
+		<input name="password" type="password" class="form-control" placeholder="password here" ng-model="credentials.password" required="">
+	</div>
+	<button class="btn" ng-disabled="!simpleLogin.$valid" type="submit">login</button>
+</form>
+<br>
+<a href="#/register" class="btn btn-default">or register</a>
+
+<hr>
+
+<h5> or login with one of your accounts </h5> -->
+<button class="btn btn-info btn-block btn-lg" ng-click="vm.facebookLogin()">login with facebook</button>

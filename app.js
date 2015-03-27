@@ -16,14 +16,21 @@
 				authRequired: true
 			})
 			.when('/register', {
-				templateUrl : 'register/register.html',
-				controller: 'RegisterCtrl',
-				controllerAs: 'vm',
-				authRequired: false
+				// templateUrl : 'register/register.html',
+				// controller: 'RegisterCtrl',
+				// controllerAs: 'vm',
+				// authRequired: false
+				redirectTo: '/login'
 			})
 			.when('/create-group', {
 				templateUrl : 'create-group/create-group.html',
 				controller: 'CreateGroupCtrl',
+				controllerAs: 'vm',
+				authRequired: true
+			})
+			.when('/settings/:key', {
+				templateUrl : 'group-settings/group-settings.html',
+				controller: 'GroupSettings',
 				controllerAs: 'vm',
 				authRequired: true
 			})
@@ -63,6 +70,12 @@
 				controllerAs: 'vm',
 				authRequired: true					
     		})
+    		.when('/chat/:key', {
+				templateUrl : 'chat/chat.html',
+				controller: 'ChatCtrl',
+				controllerAs: 'vm',
+				authRequired: true					
+    		})
     		.otherwise({
     			redirectTo: '/login'
     		});
@@ -74,6 +87,7 @@
 
 		if ($rootScope.authData) {
 			console.log("User " + $rootScope.authData.uid + " is logged in with " + $rootScope.authData.provider);
+			// console.log($rootScope.authData);
 		} else {
 			console.log("User is logged out");
 		}

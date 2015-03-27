@@ -9,6 +9,8 @@
 	function GroupsCtrl(Groups){
 		var self = this;
 
+		self.groups = null;
+
 		Groups.$loaded().then(function(){
 			self.groups = Groups;
 		});

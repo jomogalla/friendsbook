@@ -1,19 +1,15 @@
-<div class="row">
-	<div class="col-md-4">
-		<!-- <h4> you </h4> -->
-		<img src="" alt="" class="img-thumbnail">
-		<!-- <h5><small>email: </small>{{vm.user.email}}</h5> -->
-		<form>
-			<div class="form-group">
-				<label for="userName">username: </label>
-				<input type="text" class="form-control" name="userName" placeholder="user name" ng-model="vm.user.username">
-			</div>
-		</form>
-		<div class="row" ng-show="vm.currentUser">
-			<button ng-click="vm.save()" class="btn btn-link col-md-4">save</button>
-			<button ng-click="vm.deleteUser()" class="btn btn-link col-md-4"> delete </button>
-			<button ng-click="vm.logout()" class="btn btn-link col-md-4">logout</button>
-		</div>
-		
+<img src="{{vm.facebookData.cachedUserProfile.picture.data.url}}" alt="" class="img-thumbnail center-block">
+
+<!-- <h5><small>email: </small>{{vm.user.email}}</h5>
+	<form>
+	<div class="form-group">
+		<label for="userName">username: </label>
+		<input type="text" class="form-control" name="userName" placeholder="user name" ng-model="vm.user.username">
 	</div>
+</form> -->
+
+<h3 class="text-center"> {{vm.facebookData.displayName}}</h3>
+
+<div ng-show="vm.currentUser">
+	<button ng-click="vm.logout()" class="btn btn-default btn-lg center-block">logout</button>
 </div>

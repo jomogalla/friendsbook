@@ -1,18 +1,22 @@
 <h3> SO, you want to create a group? </h3>
-<div class="row">
-	<h5>what should it be called?</h5>
-	<input ng-model="vm.group.title" type="text" class="form-control">
-</div>
-<div class="row">
-	<h5> do you want a description?</h5>
-	<textarea ng-model="vm.group.description" type="text"  class="form-control"></textarea>
-</div>
-<div class="row">
-	<label for="private">do you want this group private?</label>
-	<input name="private" type="checkbox" ng-model="vm.group.private">
-
-</div>
-<div class="row">
-	<button class="btn btn-primary" ng-click="vm.createGroup()"> create </button>
-	<a href="#" class="btn btn-default"> cancel </a>
-</div>
+<hr>
+<form class="form" name="createGroup" ng-submit="vm.createGroup()" novalidate>
+	<div class="form-group">
+		<label for="description">what should it be called?</label>
+		<input ng-model="vm.group.title" type="text" class="form-control" required="">
+	</div>
+	<div class="form-group">
+		<label for="description"> do you want a description?</label>
+		<textarea ng-model="vm.group.description" type="text" id="description" class="form-control"></textarea>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" ng-model="vm.group.private"> 
+			keep the group private
+		</label>
+	</div>
+	<div class="row">
+		<a href="#/" class="btn btn-default col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1"> cancel </a>
+		<button class="btn btn-primary col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2" type="submit" ng-disabled="!createGroup.$valid"> create </button>
+	</div>
+</form>
