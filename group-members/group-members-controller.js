@@ -26,9 +26,10 @@
 				self.group = Groups.$getRecord(self.groupId);
 			});
 
-			FriendsList.getFriends($rootScope.authData.facebook.id, $rootScope.authData.facebook.accessToken).then(function(data){
-				self.friends = data.data;
-			});
+			FriendsList.getFriends($rootScope.authData.facebook.id, $rootScope.authData.facebook.accessToken)
+				.then(function(data){
+					self.friends = data.data;
+				});
 
 
 			self.members = Members.$everyone(self.groupId);
@@ -36,12 +37,12 @@
 		}
 
 		function addToGroup(friend){
-			// Members.$add(self.groupId, friend);
-			
+			Members.$add(self.groupId, friend.id);
+
 		}
 
-		function removeFromGroup(uid){
-			// Members.$remove(self.groupId, uid);
+		function removeFromGroup(friendId){
+			Members.$remove(self.groupId, friendId);
 		}
 
 		function save(){

@@ -17,7 +17,7 @@
 			$add: function(groupKey, uid){
 				return ref.child(groupKey).child(uid).set(false);
 			},
-			// REMOVE THEM COMPLETELLLYL
+			// REMOVE THEM COMPLETELLLYL, not just falsifying them
 			$remove: function(groupKey, uid){
 				return ref.child(groupKey).child(uid).set(false);
 			},
