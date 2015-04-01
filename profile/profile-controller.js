@@ -14,21 +14,30 @@
 
 		self.user = null;
 		self.currentUser = false;
-		self.facebookData = $rootScope.authData.facebook;
-		self.friends = FriendsList.getFriends($rootScope.authData.facebook.id, $rootScope.authData.facebook.accessToken);
+		self.profile = null;
+		// self.facebookData = $rootScope.authData.facebook;
+		// self.facebookData = $rootScope.authData.facebook;
+		// self.friends = FriendsList.getFriends($rootScope.authData.facebook.id, $rootScope.authData.facebook.accessToken);
 
 		if(!$routeParams.key){
-			self.user = People.$get($rootScope.authData.uid)
+			// self.user = People.$get($rootScope.authData.uid)
+			self.profile = $rootScope.authData.facebook;
 			self.currentUser = true;
 		} else {
-			self.user = People.$get($routeParams.key);
+			FriendsList.getFriend(('facebook:' + $routeParams.key), $rootScope.authData.facebook.accessToken)
+				.then(function(data){
+					self.profile = data;
+					console.log(data);
+				});
+			// self.user = People.$get($routeParams.key);
 			self.currentUser = false;
 		}
 
-		if(self.user.username = ""){
-			self.facebookData = $rootScope.authData.facebook;
-			self.user.username = self.facebookData.displayName;
-		}
+
+		// if(self.user.username = ""){
+			// self.facebookData = $rootScope.authData.facebook;
+			// self.user.username = self.facebookData.displayName;
+		// }
 
 		// function save () {
 		// 	self.user.$save().then(function() {

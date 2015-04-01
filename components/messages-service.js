@@ -9,7 +9,7 @@
 	function Messages($firebaseObject){
 		var ref = new Firebase("https://blistering-torch-1950.firebaseio.com/messages");
 
-		var Members = {
+		var Messages = {
 			// DONE
 			$getAll: function(groupKey){
 				return $firebaseObject(ref.child(groupKey));
@@ -22,6 +22,6 @@
 				});
 			},
 		}
-		return Members;
+		return Messages;
 	}
 })();

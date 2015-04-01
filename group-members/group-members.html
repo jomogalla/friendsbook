@@ -13,29 +13,46 @@
 <hr>
 
 <h4> add humans to your group!! </h4>
-<div class="row">
-	<div class="col-md-6">
-		<h5>fb friends</h5>
+<!-- <div class="row"> -->
+	<!-- <div class="col-md-6"> -->
+
+		<!-- <h5>fb friends</h5> -->
+		<input type="text" class="form-control" placeholder="search friends" ng-model="vm.searchText">
 		<table class="table table-hover">
-			<tr ng-repeat="friend in vm.friends">
-				<td> {{friend.name}} </td>
-				<td> <button class="btn btn-link" ng-click="vm.addToGroup(friend)">add to group</button></td>
+			<tr>
+				<!-- <td> <span class="glyphicon glyphicon-ok text-success"></span></td> -->
+				<td> <span userlink uid="vm.currentUser.id"></span><span class=""> (you)</span></td>
+				<td> 
+					<button class="btn btn-link btn-lg" ng-click="vm.addToGroup(vm.currentUser.id)"><span class="glyphicon glyphicon-plus text-info"></span></button>
+					<button class="btn btn-link btn-lg" ng-click="vm.removeFromGroup(vm.currentUser.id)"><span class="glyphicon glyphicon-ok text-success"></span></button>
+				</td>
+				<!-- <td> <button class="btn btn-link" ng-click="vm.addToGroup(vm.currentUserUID)">add yourself to the group</button></td> -->
+			</tr>
+			<tr ng-repeat="friend in vm.friends | FriendSearch:vm.searchText">
+				<!-- <td> <span class="glyphicon glyphicon-remove text-error"></span></td> -->
+				<td> <span userlink uid="friend.id"></span></td>
+				<td>
+					<button class="btn btn-link btn-lg" ng-click="vm.addToGroup(friend.id)"><span class="glyphicon glyphicon-plus text-info"></span></button>
+					<button class="btn btn-link btn-lg" ng-click="vm.removeFromGroup(friend.id)"><span class="glyphicon glyphicon-ok text-success"></span></button>
+				</td>
+				<!-- <td> <button class="btn btn-link" ng-click="vm.addToGroup(friend)">add to group</button></td> -->
 			</tr>
 		</table>
 	</div>
-	<div class="col-md-6">
+<!-- 	<div class="col-md-6">
 		<h5> group membs </h5>
 		<table class="table table-hover">
 			<tr ng-repeat="(key, value) in vm.members">
-				<td> {{key}} </td>
-				<!-- <td> <button class="btn btn-link" ng-click="vm.removeFromGroup(key)">remove from group</button></td> -->
-				<td> <em> ONLY IDS AT THIS POINT JERKS </em> <br> <small>and you can never leave the group</small></td>
+				<td><span userlink uid="key"></span></td>
+				<td> <button class="btn btn-link" ng-click="vm.removeFromGroup(key)">remove from group</button></td>
 			</tr>
 		</table>
-	</div>
-</div>
+	</div> -->
+<!-- </div> -->
 <hr>
 <div class="row">
 	<a href="#/group/{{vm.groupId}}" class="btn btn-default col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1">cancel</a>
 	<button ng-click="vm.save()" class="btn btn-info col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">save</button>
 </div>
+<hr>
+<button ng-click="vm.testFriendsBookService()" class="btn btn-lg btn-default">test</button>

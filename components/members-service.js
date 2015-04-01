@@ -15,11 +15,14 @@
 				return $firebaseObject(ref.child(groupKey));
 			},
 			$add: function(groupKey, uid){
-				return ref.child(groupKey).child(uid).set(false);
+				return ref.child(groupKey).child('facebook:' + uid).set(false);
+			},
+			$acceptRequest: function(groupKey, uid){
+				return ref.child(groupKey).child('facebook:' + uid).set(true);
 			},
 			// REMOVE THEM COMPLETELLLYL, not just falsifying them
 			$remove: function(groupKey, uid){
-				return ref.child(groupKey).child(uid).set(false);
+				return ref.child(groupKey).child('facebook:' + uid).remove();
 			},
 		}
 		return Members;

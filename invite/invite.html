@@ -1,0 +1,13 @@
+<!-- <h3> invites </h3> -->
+<div class="" ng-show="!vm.hasInvitation">
+	<p class="lead">
+		You don't seem to have any current invites :()
+	</p>
+</div>
+<div ng-show="vm.hasInvitation">
+	<div ng-repeat="(groupId, inviteStatus) in vm.currentUser.groups" ng-show="!inviteStatus">
+		<span> you have been invited to Group - {{groupId}} </span>
+		<button class="btn btn-default" ng-click="vm.acceptInvitation(groupId)">accept invitation</button>
+		<button class="btn btn-default" ng-click="vm.rejectInvitation(groupId)">reject invitation</button>
+	</div>
+</div>

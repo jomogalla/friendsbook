@@ -5,14 +5,12 @@
 		.module('app')
 		.directive('userlink', UserLink);
 
-	UserLink.$inject = ['Profile'];
-	function UserLink(Profile){
+	UserLink.$inject = ['FriendsList', '$rootScope'];
+	function UserLink(FriendsList, $rootScope){
 		var directive = {
 			restrict: 'A',
-			template: '<a href="#/profile/{{message.user.userid}}">{{message.user.username}}</a>',
+			template: '<img ng-src="{{pictureURL}}" class="img-circle"><a href="#/profile/{{friend.id}}" class="btn">{{friend.name}}</a>',
 			scope: {
-				// uid: '=uid'
-				// SAME AS ABOVE
 				uid: '='
 			},
 			link:link
@@ -20,7 +18,21 @@
 		return directive;
 
 		function link(scope, element, attrs){
-			console.log(scope);
+			scope.friend = null;
+			scope.pictureURL = "";
+
+			FriendsList.getFriendName($rootScope.authData.facebook.id, scope.uid, $rootScope.authData.facebook.accessToken)
+				.then(function(data){
+					scope.friend = data;
+
+					// if(sc)
+					// console.log(data);
+				});
+			FriendsList.getProfilePictureURL(scope.uid, $rootScope.authData.facebook.accessToken)
+				.then(function(data){
+					scope.pictureURL = data.data.url;
+				});
+
 		}
 		
 	}

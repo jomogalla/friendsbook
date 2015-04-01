@@ -29,14 +29,32 @@
 			Auth.$authWithOAuthPopup("facebook", {scope: 'user_friends'})
 				.then(function(authData) {
 					$rootScope.authData = authData;
-					if(People.$get($rootScope.authData.uid).uid){
-						console.log('we got no user cletus');
+					// If we dont have a user - create one
+					if(!People.$get($rootScope.authData.uid).displayName){
+						var newUser = {
+							displayName: $rootScope.authData.facebook.displayName,
+							profilePhotoURL: $rootScope.authData.facebook.cachedUserProfile.picture.data.url,
+							gender: $rootScope.authData.facebook.cachedUserProfile.gender,
+							ageRange: $rootScope.authData.facebook.cachedUserProfile.age_range
+						}
+						// var uid = $rootScope.authData.uid;
+						// var displayName = $rootScope.authData.facebook.displayName;
+						// var profilePhotoURL = $rootScope.authData.facebook.cachedUserProfile.picture.url;
+						// var gender = $rootScope.authData.facebook.cachedUserProfile.gender;
+						// var ageRange = $rootScope.authData.facebook.cachedUserProfile.age_range;
+
+						People.$create($rootScope.authData.uid, newUser);
+						$location.path('/');
 					} else {
-						console.log('welp we got a user');
+						$location.path('/');
+
 					}
 					
-					console.log(People.$get($rootScope.authData.uid).uid);
-					$location.path('/');
+					// console.log(People.$get('simplelogin:1').username);
+					// console.log(People.$get($rootScope.authData.uid));
+					// console.log($rootScope.authData.uid);
+					// console.log($rootScope.authData.uid);
+					// $location.path('/');
 				}).catch(function(error) {
   					console.error("Authentication failed:", error);
 				});

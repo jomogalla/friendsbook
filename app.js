@@ -28,6 +28,12 @@
 				controllerAs: 'vm',
 				authRequired: true
 			})
+			.when('/invites', {
+				templateUrl : 'invite/invite.html',
+				controller: 'InviteCtrl',
+				controllerAs: 'vm',
+				authRequired: true
+			})
 			.when('/settings/:key', {
 				templateUrl : 'group-settings/group-settings.html',
 				controller: 'GroupSettings',

@@ -3,7 +3,8 @@
 		<a href="#/" class="navbar-brand" ng-class="{active:nav.isActive('')}">friendsbook</a>
 	</div>
 	<ul class="nav navbar-nav" ng-show="!nav.isActive('login')">
-		<li ng-class="{active:nav.isActive('profile')}" role="presentation"><a href="#/profile">Profile</a></li>
-		<li ng-class="{active:nav.isActive('groups')}" role="presentation"><a href="#/groups">Groups</a></li>
+		<li ng-class="{active:nav.isActive('profile')}" role="presentation"><a href="#/profile">profile</a></li>
+		<li ng-class="{active:nav.isActive('groups')}" role="presentation"><a href="#/groups">groups</a></li>
+		<li role="presentation" ng-show="nav.invites" ng-class="{active:nav.isActive('invites')}"><a href="#/invites">invites <span class="badge">{{nav.invites}}</span></a></li>
 	</ul>
 </div>

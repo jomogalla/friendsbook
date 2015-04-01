@@ -5,19 +5,23 @@
 		.module('app')
 		.controller('GroupMembersCtrl', GroupMembersCtrl);
 
-	GroupMembersCtrl.$inject = ['$routeParams', '$rootScope','$location', 'Groups', 'People', 'Members', 'FriendsList'];
-	function GroupMembersCtrl($routeParams, $rootScope, $location, Groups, People, Members, FriendsList){
+	GroupMembersCtrl.$inject = ['$routeParams', '$rootScope','$location', 'Groups', 'People', 'Members', 'FriendsList', 'Friendsbook'];
+	function GroupMembersCtrl($routeParams, $rootScope, $location, Groups, People, Members, FriendsList, Friendsbook){
 		self = this;
 
 		// functions
 		self.addToGroup = addToGroup;
 		self.removeFromGroup = removeFromGroup;
 		self.save = save;
+		self.testFriendsBookService = testFriendsBookService; 
 
 		// variables
 		self.groupId = $routeParams.key;
+		self.searchText = "";
 		self.group = null;
 		self.friends = null;
+		self.currentUser = $rootScope.authData.facebook;
+		// self.currentUser = People.$get($rootScope.authData.uid);
 
 		activate();
 
@@ -36,17 +40,24 @@
 			self.users = People.$everyone();
 		}
 
-		function addToGroup(friend){
-			Members.$add(self.groupId, friend.id);
+		function addToGroup(friendId){
+			// console.log(friendId);
+			Members.$add(self.groupId, friendId);
+			People.$addToGroup(self.groupId, friendId);
 
 		}
 
 		function removeFromGroup(friendId){
 			Members.$remove(self.groupId, friendId);
+			People.$removeFromGroup(self.groupId, friendId);
 		}
 
 		function save(){
 			$location.path('/group/' + self.groupId);
+		}
+
+		function testFriendsBookService(){
+			Friendsbook.$addPerson(23, 23);
 		}
 	}
 })();
