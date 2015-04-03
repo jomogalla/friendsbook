@@ -5,9 +5,9 @@
 		.module('app')
 		.controller('CreateGroupCtrl', CreateGroupCtrl);
 
-	CreateGroupCtrl.$inject = ['$location','People', 'Groups'];
-	function CreateGroupCtrl($location, People, Groups){
-		self = this;
+	CreateGroupCtrl.$inject = ['$location', 'Backend'];
+	function CreateGroupCtrl($location, Backend){
+		var self = this;
 
 		// functions
 		self.createGroup = createGroup;
@@ -19,10 +19,10 @@
 		self.group.private = false;
 
 		function createGroup(){
-			Groups.$add(self.group).then(function(ref){
+			Backend.$createGroup(self.group).then(function(ref){
 				var id = ref.key()
 				$location.path('/members/' + id);
-			});
+			})
 		}
 	}
 })();

@@ -1,10 +1,16 @@
 <div class="container">
-	<div class="navbar-header">
+	<div class="navbar-header navbar-left">
 		<a href="#/" class="navbar-brand" ng-class="{active:nav.isActive('')}">friendsbook</a>
 	</div>
-	<ul class="nav navbar-nav" ng-show="!nav.isActive('login')">
-		<li ng-class="{active:nav.isActive('profile')}" role="presentation"><a href="#/profile">profile</a></li>
-		<li ng-class="{active:nav.isActive('groups')}" role="presentation"><a href="#/groups">groups</a></li>
-		<li role="presentation" ng-show="nav.invites" ng-class="{active:nav.isActive('invites')}"><a href="#/invites">invites <span class="badge">{{nav.invites}}</span></a></li>
-	</ul>
+
+	<div class="navbar-left">
+		<ul class="nav navbar-nav list-inline" ng-show="!nav.isActive('login')">
+			<li ng-class="{active:nav.isActive('profile')}" role="presentation"><a href="#/profile">profile</a></li>
+			<li ng-class="{active:nav.isActive('groups')}" role="presentation"><a href="#/groups">groups</a></li>
+			<li role="presentation" ng-show="nav.invites" ng-class="{active:nav.isActive('invites')}">
+				<a href="#/invites">{{nav.invites}} new group invite<span ng-if="nav.invites > 1">s</span>
+				</a>
+			</li>
+		</ul>
+	</div>
 </div>

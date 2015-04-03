@@ -1,4 +1,4 @@
-# Friendsbook
+# friendsbook
 
 ### Database Schema
 

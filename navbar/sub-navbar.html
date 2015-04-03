@@ -1,0 +1,12 @@
+<h3> 
+	<span ng-show="!vm.group.title" class="glyphicon glyphicon-hourglass spin"></span>
+	<a href="#/group/{{vm.group.$id}}">{{vm.group.title}}</a>
+	<small>
+		{{vm.group.description}}
+		<span class="pull-right">
+			<a href="#/chat/{{vm.group.$id}}">chat</a> /
+			<a href="#/members/{{vm.group.$id}}">members</a> /
+			<a href="#/settings/{{vm.group.$id}}">settings</a>
+		</span>
+	</small>
+</h3>

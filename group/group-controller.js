@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('GroupCtrl', GroupCtrl);
 
-	GroupCtrl.$inject = ['$routeParams', '$rootScope','Groups', 'People', 'Messages'];
-	function GroupCtrl($routeParams, $rootScope, Groups, People, Messages){
+	GroupCtrl.$inject = ['$routeParams', 'Backend'];
+	function GroupCtrl($routeParams, Backend){
 		self = this;
 
 		self.group = null;
@@ -14,8 +14,8 @@
 		activate();
 
 		function activate(){
-			Groups.$loaded().then(function(){
-				self.group = Groups.$getRecord($routeParams.key);
+			Backend.$getGroup($routeParams.key).then(function(group){
+				self.group = group
 			});
 		}
 	}

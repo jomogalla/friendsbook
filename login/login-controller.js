@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('LoginCtrl', LoginCtrl);
 
-	LoginCtrl.$inject = ['$location', '$rootScope', 'Auth', 'People', 'FriendsList'];
-	function LoginCtrl($location, $rootScope, Auth, People, FriendsList){
+	LoginCtrl.$inject = ['$location', '$rootScope', 'Auth', 'Backend'];
+	function LoginCtrl($location, $rootScope, Auth, Backend){
 		var self = this;
 
 		self.login = login;
@@ -30,31 +30,21 @@
 				.then(function(authData) {
 					$rootScope.authData = authData;
 					// If we dont have a user - create one
-					if(!People.$get($rootScope.authData.uid).displayName){
+					if(!Backend.$getCurrentPerson().displayName){
 						var newUser = {
+							id: $rootScope.authData.facebook.id,
 							displayName: $rootScope.authData.facebook.displayName,
 							profilePhotoURL: $rootScope.authData.facebook.cachedUserProfile.picture.data.url,
 							gender: $rootScope.authData.facebook.cachedUserProfile.gender,
 							ageRange: $rootScope.authData.facebook.cachedUserProfile.age_range
 						}
-						// var uid = $rootScope.authData.uid;
-						// var displayName = $rootScope.authData.facebook.displayName;
-						// var profilePhotoURL = $rootScope.authData.facebook.cachedUserProfile.picture.url;
-						// var gender = $rootScope.authData.facebook.cachedUserProfile.gender;
-						// var ageRange = $rootScope.authData.facebook.cachedUserProfile.age_range;
 
-						People.$create($rootScope.authData.uid, newUser);
+						Backend.$createPerson(newUser);
 						$location.path('/');
 					} else {
 						$location.path('/');
 
 					}
-					
-					// console.log(People.$get('simplelogin:1').username);
-					// console.log(People.$get($rootScope.authData.uid));
-					// console.log($rootScope.authData.uid);
-					// console.log($rootScope.authData.uid);
-					// $location.path('/');
 				}).catch(function(error) {
   					console.error("Authentication failed:", error);
 				});

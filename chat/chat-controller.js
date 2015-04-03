@@ -5,25 +5,23 @@
 		.module('app')
 		.controller('ChatCtrl', ChatCtrl);
 
-	ChatCtrl.$inject = ['$routeParams', '$rootScope','Groups', 'People', 'Messages'];
-	function ChatCtrl($routeParams, $rootScope, Groups, People, Messages){
-		self = this;
+	ChatCtrl.$inject = ['$routeParams', 'Backend'];
+	function ChatCtrl($routeParams, Backend){
+		var self = this;
 
 		self.submitMessage = submitMessage;
 
 		self.inputText = "";
+		self.currentUser = Backend.$getCurrentPerson();
+		self.messages = Backend.$getMessages();
+		self.group = null;
 
-		self.currentUser = People.$get($rootScope.authData.uid);
-		self.currentUser.uid = $rootScope.authData.uid;
-
-		Groups.$loaded().then(function(){
-			self.group = Groups.$getRecord($routeParams.key);
+		Backend.$getGroup($routeParams.key).then(function(group){
+			self.group = group
 		});
-		self.messages = Messages.$getAll($routeParams.key);
 
 		function submitMessage(){
-			Messages.$add($routeParams.key, $rootScope.authData.uid, $rootScope.authData.facebook.displayName, self.inputText);
-
+			Backend.$addMessage(self.inputText);
 			self.inputText = "";
 		}
 	}

@@ -5,22 +5,20 @@
 		.module('app')
 		.controller('GroupSettings', GroupSettings);
 
-	GroupSettings.$inject = ['$routeParams', '$location', 'Groups'];
-	function GroupSettings($routeParams, $location, Groups){
-		self = this;
+	GroupSettings.$inject = ['$routeParams', '$location', 'Backend'];
+	function GroupSettings($routeParams, $location, Backend){
+		var self = this;
 
-		// functions
 		self.save = save;
 
-		// variables
 		self.groupId = $routeParams.key;
 
-		Groups.$loaded().then(function(){
-			self.group = Groups.$getRecord(self.groupId);
+		Backend.$getGroup($routeParams.key).then(function(group){
+			self.group = group;
 		});
 
 		function save(){
-			Groups.$save(self.group).then(function(ref){
+			Backend.$saveGroup(self.group).then(function(){
 				$location.path('/group/'+ self.groupId);
 			});
 		}

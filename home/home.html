@@ -1,9 +1,6 @@
-<h2> Welcome to friendsbook<span ng-show="vm.user.username" class="text-info">, {{vm.user.username}}</span>! </h2>
+<h2> Welcome to friendsbook<span ng-show="vm.user.displayName" class="text-info">, {{vm.user.displayName}}</span>! </h2>
 <h4 class="text-gray"> It's a great place where you can meet people, create groups, and chat about whatever </h4>
 
 <hr>
 
-<p ng-show="!vm.user.username" class="lead"> It looks like you don't have a username yet! head on over to your <a href="#/profile">profile</a> and make one!</p>
-<p ng-show="!vm.user.username" class="lead"> After that go check out <a href="#/groups">groups</a> to see what people are talking about!</p>
-<p ng-show="vm.user.username" class="lead"> Go check out <a href="#/groups">groups</a> to see what people are talking about!</p>
-<button ng-click="vm.testFriendsBookService()" class="btn btn-lg btn-default">test</button>
+<p ng-show="vm.user.displayName" class="lead"> Go check out <a href="#/groups">groups</a> to see what people are talking about!</p>

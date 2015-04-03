@@ -3,32 +3,44 @@
 
 	angular
 		.module('app')
-		.factory('FriendsList', FriendsList)
+		.factory('Facebook', Facebook)
 
-	FriendsList.$inject = ['$http'];
-	function FriendsList($http){
+	Facebook.$inject = ['$http', '$rootScope'];
+	function Facebook($http, $rootScope){
+		var accessToken = $rootScope.authData.facebook.accessToken;
+		var currentPersonId = $rootScope.authData.facebook.id;
 
 		return ({
 			setAuthHeader:setAuthHeader,
+			getMe:getMe,
 			getFriends:getFriends,
 			getFriend:getFriend,
 			getFriendName:getFriendName,
 			getProfilePictureURL:getProfilePictureURL
 		});
 
-		function setAuthHeader(accessToken){
+		function setAuthHeader(){
 			$http.defaults.headers.common.Authorization = 'Bearer' + accessToken;
 		}
 
-		function getFriends(id, accessToken){
+		function getMe(){
 			$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
-			return $http.get('https://graph.facebook.com/' + id +'/friends')
+			return $http.get('https://graph.facebook.com/' + currentPersonId)
 						.then(function(data, status, headers, config){
 							// console.log(data.data);
 							return data.data;
 						});
 		}
-		function getFriend(friendId, accessToken){
+
+		function getFriends(){
+			$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
+			return $http.get('https://graph.facebook.com/' + currentPersonId +'/friends')
+						.then(function(data, status, headers, config){
+							// console.log(data.data);
+							return data.data;
+						});
+		}
+		function getFriend(friendId){
 			$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
 			return $http.get('https://graph.facebook.com/' + friendId)
 						.then(function(data, status, headers, config){
@@ -36,28 +48,28 @@
 							return data.data;
 						});
 		}
-		function getFriendName(id, friendId, accessToken){
+		function getFriendName(friendId){
 			$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
-			if(id !== friendId){
-				return $http.get('https://graph.facebook.com/' + id +'/friends/' +friendId)
+			if(currentPersonId !== friendId){
+				return $http.get('https://graph.facebook.com/' + currentPersonId +'/friends/' +friendId)
 							.then(function(data, status, headers, config){
 								// console.log(data.data);
 								return data.data.data[0];
 							});
 			} else {
-				return $http.get('https://graph.facebook.com/' + id)
+				return $http.get('https://graph.facebook.com/' + currentPersonId)
 							.then(function(data, status, headers, config){
 								// console.log(data.data);
 								return data.data;
 							});
 			}
 		}
-		function getProfilePictureURL(id, accessToken){
+		function getProfilePictureURL(friendId){
 			$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
 			
-			return $http.get('https://graph.facebook.com/' + id + '/picture?redirect=false')
+			return $http.get('https://graph.facebook.com/' + friendId + '/picture?redirect=false')
 						.then(function(data, status, headers, config){
-							return data.data;
+							return data.data.data.url;
 						});			
 		}
 	}

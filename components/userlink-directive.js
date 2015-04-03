@@ -5,11 +5,11 @@
 		.module('app')
 		.directive('userlink', UserLink);
 
-	UserLink.$inject = ['FriendsList', '$rootScope'];
-	function UserLink(FriendsList, $rootScope){
+	UserLink.$inject = ['Facebook', 'Backend', '$rootScope'];
+	function UserLink(Facebook, Backend, $rootScope){
 		var directive = {
 			restrict: 'A',
-			template: '<img ng-src="{{pictureURL}}" class="img-circle"><a href="#/profile/{{friend.id}}" class="btn">{{friend.name}}</a>',
+			templateUrl: './components/userlink.html',
 			scope: {
 				uid: '='
 			},
@@ -21,17 +21,38 @@
 			scope.friend = null;
 			scope.pictureURL = "";
 
-			FriendsList.getFriendName($rootScope.authData.facebook.id, scope.uid, $rootScope.authData.facebook.accessToken)
+
+			// handling a facebook:id style id
+			if(scope.uid.indexOf('facebook') >= 0){
+				scope.uid = scope.uid.replace('facebook:', '');
+			}
+
+			Facebook.getFriendName(scope.uid)
 				.then(function(data){
 					scope.friend = data;
+				});
+			Facebook.getProfilePictureURL(scope.uid)
+				.then(function(url){
+					scope.pictureURL = url;
+				});
 
-					// if(sc)
-					// console.log(data);
-				});
-			FriendsList.getProfilePictureURL(scope.uid, $rootScope.authData.facebook.accessToken)
-				.then(function(data){
-					scope.pictureURL = data.data.url;
-				});
+			// Attempt at getting our own user data instead of the slow Facebook data
+
+			// Backend.$getPerson(scope.uid).$loaded().then(function(person){
+			// 	console.log(person);
+			// 	if(person.displayName){
+			// 		scope.person = person;
+			// 	} else {
+			// 		// Facebook backup
+			// 		scope.uid = scope.uid.replace('facebook:', '');
+			// 		Facebook.getFriendName(scope.uid).then(function(person){
+			// 			scope.person = person;
+			// 			scope.person.displayName = person.name;
+			// 			scope.person.id = person.id;
+			// 		});
+					
+			// 	}
+			// });
 
 		}
 		

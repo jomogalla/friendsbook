@@ -5,14 +5,14 @@
 		.module('app')
 		.controller('GroupsCtrl', GroupsCtrl);
 
-	GroupsCtrl.$inject = ['Groups'];
-	function GroupsCtrl(Groups){
+	GroupsCtrl.$inject = ['Backend'];
+	function GroupsCtrl(Backend){
 		var self = this;
 
 		self.groups = null;
 
-		Groups.$loaded().then(function(){
-			self.groups = Groups;
+		Backend.$getGroups().then(function(groups){
+			self.groups = groups;
 		});
 	}
 })();
