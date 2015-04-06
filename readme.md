@@ -1,4 +1,5 @@
 # friendsbook
+A group based chat application, utilizing Facebook oAuth for authentication, AngularJS for the front-end and Firebase for the backend.
 
 ### Database Schema
 
@@ -7,7 +8,7 @@
     	groupkey1:{
             title:title,
             description:description,
-            private:private
+            private:private    //Might be removed and become the default
     	}
     	groupkey2:{...}
     }
@@ -56,3 +57,6 @@ When someone gets invited to the list, they get added to the member list with a 
     	}
     	groupkey2:{...}
     }
+
+### Database Rules & Security
+in progress...
