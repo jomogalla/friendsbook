@@ -27,8 +27,7 @@
 			$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
 			return $http.get('https://graph.facebook.com/' + currentPersonId)
 						.then(function(data, status, headers, config){
-							// console.log(data.data);
-							return data.data;
+							return _addUid(data.data);
 						});
 		}
 
@@ -36,41 +35,57 @@
 			$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
 			return $http.get('https://graph.facebook.com/' + currentPersonId +'/friends')
 						.then(function(data, status, headers, config){
-							// console.log(data.data);
+							for(var i = 0; i < data.data.data.length; i++){
+								_addUid(data.data.data[i]);
+							}
 							return data.data;
 						});
 		}
+
 		function getFriend(friendId){
 			$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
-			return $http.get('https://graph.facebook.com/' + friendId)
+
+			return $http.get('https://graph.facebook.com/' + _cleanId(friendId))
 						.then(function(data, status, headers, config){
-							// console.log(data.data);
-							return data.data;
+							return _addUid(data.data);
 						});
 		}
+
 		function getFriendName(friendId){
 			$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
-			if(currentPersonId !== friendId){
-				return $http.get('https://graph.facebook.com/' + currentPersonId +'/friends/' +friendId)
+
+			if(_cleanId(currentPersonId) !== _cleanId(friendId)){
+				return $http.get('https://graph.facebook.com/' + _cleanId(currentPersonId) +'/friends/' + _cleanId(friendId))
 							.then(function(data, status, headers, config){
-								// console.log(data.data);
-								return data.data.data[0];
+								return _addUid(data.data.data[0]);
 							});
 			} else {
-				return $http.get('https://graph.facebook.com/' + currentPersonId)
+				return $http.get('https://graph.facebook.com/' + _cleanId(currentPersonId))
 							.then(function(data, status, headers, config){
 								// console.log(data.data);
-								return data.data;
+								return _addUid(data.data);
 							});
 			}
 		}
 		function getProfilePictureURL(friendId){
 			$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
-			
-			return $http.get('https://graph.facebook.com/' + friendId + '/picture?redirect=false')
+
+			return $http.get('https://graph.facebook.com/' + _cleanId(friendId) + '/picture?redirect=false')
 						.then(function(data, status, headers, config){
 							return data.data.data.url;
 						});			
+		}
+
+		function _addUid(friend){
+			if(friend !== undefined){
+				friend.uid = 'facebook:' + friend.id;
+			}
+			return friend;
+		}
+		
+		function _cleanId(id){
+			id = id.replace('facebook:', '');
+			return id;
 		}
 	}
 })();

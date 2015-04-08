@@ -8,8 +8,8 @@
 	InviteButton.$inject = ['Backend'];
 	function InviteButton(Backend){
 		var directive = {
-			restrict: 'A',
-			templateUrl: '/group-members/invite-button.html',
+			restrict: 'C',
+			templateUrl: 'group-members/invite-button.html',
 			scope: {
 				uid: '='
 			},
@@ -38,7 +38,7 @@
 			}
 
 			function _updateMemberStatus(){
-				scope.memberStatus = members['facebook:' + scope.uid];
+				scope.memberStatus = members[scope.uid];
 			}
 		}
 	}

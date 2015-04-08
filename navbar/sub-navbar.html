@@ -4,9 +4,9 @@
 	<small>
 		{{vm.group.description}}
 		<span class="pull-right">
-			<a href="#/chat/{{vm.group.$id}}">chat</a> /
-			<a href="#/members/{{vm.group.$id}}">members</a> /
-			<a href="#/settings/{{vm.group.$id}}">settings</a>
+			<a href="#/chat/{{vm.group.$id}}" ng-class="{active:subnav.isActive('chat')}">chat</a> /
+			<a href="#/members/{{vm.group.$id}}" ng-class="{active:subnav.isActive('members')}">members</a> /
+			<a href="#/settings/{{vm.group.$id}}" ng-class="{active:subnav.isActive('settings')}">settings</a>
 		</span>
 	</small>
 </h3>

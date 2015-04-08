@@ -16,7 +16,7 @@
 		self.groupId = $routeParams.key;
 		self.currentFacebookId = $rootScope.authData.uid;
 		self.searchText = "";
-		self.group = null;
+		self.group = Backend.$getGroup($routeParams.key);
 		self.friends = null;
 		self.members = null;
 		self.currentUser = null;
@@ -25,11 +25,11 @@
 
 		function activate(){
 
-			Backend.$getGroup($routeParams.key).then(function(group){
-				self.group = group
-			});
+			// Backend.$getGroup($routeParams.key).then(function(group){
+			// 	self.group = group;
+			// });
 
-			Facebook.getFriends($rootScope.authData.facebook.id, $rootScope.authData.facebook.accessToken)
+			Facebook.getFriends($rootScope.authData.uid, $rootScope.authData.facebook.accessToken)
 				.then(function(data){
 					self.friends = data.data;
 				});

@@ -40,6 +40,12 @@
 				controllerAs: 'vm',
 				authRequired: true
 			})
+			.when('/invite-members/:key', {
+				templateUrl : 'group-members/invite-members.html',
+				controller: 'InviteMembersCtrl',
+				controllerAs: 'vm',
+				authRequired: true
+			})
 			.when('/members/:key', {
 				templateUrl : 'group-members/group-members.html',
 				controller: 'GroupMembersCtrl',

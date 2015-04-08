@@ -5,8 +5,8 @@
 	<div ng-repeat="(groupId, inviteStatus) in vm.currentUser.groups" ng-show="!inviteStatus">
 		<span grouplink groupid="groupId"></span>
 			<br>
-			<button class="btn btn-default" ng-click="vm.acceptInvitation(groupId)">accept invitation</button>
 			<button class="btn btn-default" ng-click="vm.rejectInvitation(groupId)">reject invitation</button>
+			<button class="btn btn-info" ng-click="vm.acceptInvitation(groupId)">accept invitation</button>
 		<hr>
 	</div>
 

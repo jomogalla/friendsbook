@@ -29,9 +29,9 @@
 
 		function _checkForInvites(){
 			self.invites = 0;
-			for (var property in self.currentUser.groups) {
-    			if (self.currentUser.groups.hasOwnProperty(property)) {
-        			if(!self.currentUser.groups[property]){
+			for (var invite in self.currentUser.groups) {
+    			if (self.currentUser.groups.hasOwnProperty(invite)) {
+        			if(!self.currentUser.groups[invite]){
         				self.invites++;
         			}
    				}

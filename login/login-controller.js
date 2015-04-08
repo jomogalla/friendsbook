@@ -29,22 +29,19 @@
 			Auth.$authWithOAuthPopup("facebook", {scope: 'user_friends'})
 				.then(function(authData) {
 					$rootScope.authData = authData;
-					// If we dont have a user - create one
-					if(!Backend.$getCurrentPerson().displayName){
-						var newUser = {
-							id: $rootScope.authData.facebook.id,
-							displayName: $rootScope.authData.facebook.displayName,
-							profilePhotoURL: $rootScope.authData.facebook.cachedUserProfile.picture.data.url,
-							gender: $rootScope.authData.facebook.cachedUserProfile.gender,
-							ageRange: $rootScope.authData.facebook.cachedUserProfile.age_range
-						}
 
-						Backend.$createPerson(newUser);
-						$location.path('/');
-					} else {
-						$location.path('/');
-
+					// Backend.$getCurrentPerson().$loaded().then(function(person){
+					var updatedPerson = {
+						id: $rootScope.authData.facebook.id,
+						displayName: $rootScope.authData.facebook.displayName,
+						profilePhotoURL: $rootScope.authData.facebook.cachedUserProfile.picture.data.url,
+						gender: $rootScope.authData.facebook.cachedUserProfile.gender,
+						ageRange: $rootScope.authData.facebook.cachedUserProfile.age_range
 					}
+
+					Backend.$updatePerson($rootScope.authData.uid, updatedPerson);
+					$location.path('/');
+					// });
 				}).catch(function(error) {
   					console.error("Authentication failed:", error);
 				});

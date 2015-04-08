@@ -1,13 +1,20 @@
-<h4 ng-repeat="group in vm.groups"> 
-	<a href="#/group/{{group.$id}}">
-		<span  ng-show="!group.title">Untitled</span>
-		{{group.title}} - 
-		<small>{{group.description}} 
-			<span  ng-show="!group.description">AND DESCRIPTIONLESS!</span>
-		</small>
-	</a>
-</h4>
-<br>
 <h4>
-<a class="" href="#/create-group"><small>or</small> create a new group!</a>
+	<a class="" href="#/create-group">create a new group!</a>
 </h4>
+<hr>
+
+<h4> Joined Groups </h4>
+<p ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="status">
+	<span grouplink groupid="groupId"></span>
+</p>
+</div>
+<hr>
+
+
+<h4> Invited groups </h4>
+<p ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="!status">
+	<span grouplink groupid="groupId"></span>
+</p>
+
+
+

@@ -9,14 +9,15 @@
 	function GroupCtrl($routeParams, Backend){
 		self = this;
 
-		self.group = null;
+		self.group = Backend.$getGroup($routeParams.key);
 
-		activate();
+		// activate();
 
-		function activate(){
-			Backend.$getGroup($routeParams.key).then(function(group){
-				self.group = group
-			});
-		}
+		// function activate(){
+		// 	Backend.$getGroup($routeParams.key).then(function(group){
+		// 		self.group = group
+		// 	});
+
+		// }
 	}
 })();

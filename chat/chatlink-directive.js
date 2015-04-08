@@ -9,7 +9,7 @@
 	function ChatLink(Backend, Facebook){
 		var directive = {
 			restrict: 'A',
-			templateUrl: '/chat/chatlink.html',
+			templateUrl: 'chat/chatlink.html',
 			scope: {
 				uid: '='
 			},
@@ -18,10 +18,8 @@
 		return directive;
 
 		function link(scope, element, attrs){
-			// Check our DB first, then check FB
 			scope.person = null;
 
-			// scope.person = Backend.$getPerson(scope.uid);
 			Backend.$getPerson(scope.uid).$loaded().then(function(person){
 				if(person.displayName){
 					scope.person = person;

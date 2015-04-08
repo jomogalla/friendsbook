@@ -1,4 +1,4 @@
-<div ng-include="'navbar/sub-navbar.html'"></div>
+<div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div>
 
 <hr>
 
@@ -7,8 +7,6 @@
 		<span ng-show="!vm.messages" class="glyphicon glyphicon-hourglass spin"></span>
 		<ul class="list-unstyled">
 			<li ng-repeat="message in vm.messages" class="animate-repeat"> 
-				<!-- <span class="text-info" ng-show="message.name">{{message.name}}</span> -->
-				<!-- <span class="text-info" ng-show="!message.name">{{message.uid}}</span> -->
 				<span class="text-info" chatlink uid="message.uid"></span>
 				: {{message.message}}
 			</li>

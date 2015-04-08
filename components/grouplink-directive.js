@@ -9,7 +9,7 @@
 	function GroupLink(Backend, $routeParams){
 		var directive = {
 			restrict: 'A',
-			templateUrl: '/components/grouplink.html',
+			templateUrl: 'components/grouplink.html',
 			scope: {
 				groupid: '='
 			},
@@ -20,10 +20,10 @@
 		function link(scope, element, attrs){
 			scope.group = null;
 
-			Backend.$getGroup(scope.groupid).then(function(group){
-				scope.group = group;
-			});
+			// Backend.$getGroup(scope.groupid).then(function(group){
+			// 	scope.group = group;
+			// });
+			scope.group = Backend.$getGroup(scope.groupid)
 		}
-		
 	}
 })();

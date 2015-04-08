@@ -10,20 +10,20 @@
 			var ref = new Firebase("https://blistering-torch-1950.firebaseio.com");
 
 			// FIX - do this for the rest of everything plz
-			var groups = $firebaseArray(ref.child('groups'));
+			// var groups = $firebaseArray(ref.child('groups'));
 
 			var service = {
 				// Person Methods
 				$createPerson: createPerson,
 				$getCurrentPerson: getCurrentPerson,
 				$getPerson: getPerson,
-				$editPerson: editPerson,
+				$updatePerson: updatePerson,
 
 				// Group Methods
 				$createGroup: createGroup,
 				$saveGroup: saveGroup,
 				$getGroup: getGroup,
-				$getGroups: getGroups,
+				// $getGroups: getGroups,
 
 				// Member Methods
 				$inviteMember: inviteMember,
@@ -50,7 +50,9 @@
 				return $firebaseObject(ref.child('people').child(uid));
 			}
 
-			function editPerson(){}
+			function updatePerson(uid, updatedPerson){
+				return ref.child('people').child(uid).update(updatedPerson);
+			}
 
 			// Group Functions
 			function createGroup(groupObject){
@@ -67,35 +69,36 @@
 
 			// QUESTION Debating whether or not this should be passed the group id
 			function getGroup(groupId){
-				return groups.$loaded().then(function(){
-					return groups.$getRecord(groupId);
-				});
+				return $firebaseObject(ref.child('groups').child(groupId));
+				// return groups.$loaded().then(function(){
+				// 	return groups.$getRecord(groupId);
+				// });
 			}
 
-			function getGroups(){
-				return groups.$loaded().then(function(){
-					return groups;
-				});
-			}
+			// function getGroups(){
+			// 	return groups.$loaded().then(function(){
+			// 		return groups;
+			// 	});
+			// }
 
 			// Members Functions
 			function inviteMember(groupId, uid){
-				ref.child('people').child('facebook:' + uid).child('groups').child(groupId).set(false);
-				ref.child('members').child(groupId).child('facebook:' + uid).set(false);
+				ref.child('people').child(uid).child('groups').child(groupId).set(false);
+				ref.child('members').child(groupId).child(uid).set(false);
 				// FIX need to return a promise...
 				return ('whatever');
 			}
 
 			function removeMember(groupId, uid){
-				ref.child('people').child('facebook:' + uid).child('groups').child(groupId).remove();
-				ref.child('members').child(groupId).child('facebook:' + uid).remove();
+				ref.child('people').child(uid).child('groups').child(groupId).remove();
+				ref.child('members').child(groupId).child(uid).remove();
 				// FIX need to return a promise...
 				return('whatever');
 			}
 
 			function acceptMember(groupId, uid){
-				ref.child('people').child('facebook:' + uid).child('groups').child(groupId).set(true);
-				ref.child('members').child(groupId).child('facebook:' + uid).set(true);
+				ref.child('people').child(uid).child('groups').child(groupId).set(true);
+				ref.child('members').child(groupId).child(uid).set(true);
 				// FIX need to return a promise...
 				return('whatever');
 			}

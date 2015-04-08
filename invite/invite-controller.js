@@ -26,11 +26,11 @@
 		});
 
 		function acceptInvitation(groupId){
-			Backend.$acceptMember(groupId, self.currentUser.id);
+			Backend.$acceptMember(groupId, self.currentUser.$id);
 		}
 
 		function rejectInvitation(groupId){
-			Backend.$removeMember(groupId, self.currentUser.id);
+			Backend.$removeMember(groupId, self.currentUser.$id);
 		}
 	}
 })();

@@ -1,0 +1,24 @@
+<div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div>
+
+<hr>
+
+<h4> your facebook friends </h4>
+<input type="text" class="form-control" placeholder="search friends" ng-model="vm.searchText">
+<table class="table table-hover table-responsive">
+<!-- 	<tr>
+		<td> <span userlink uid="vm.currentFacebookId"></span><span class=""> (you)</span></td>
+		<td><span invitebutton uid="vm.currentFacebookId"></span></td>
+	</tr> -->
+	<tr ng-repeat="friend in vm.friends | FriendSearch:vm.searchText">
+		<td> <span class="userlink" uid="friend.uid"></span></td>
+		<td><span class="invitebutton" uid="friend.uid"></span></td>
+		<!-- <td>{{friend}}</td> -->
+	</tr>
+	<p ng-hide="vm.friends.length">Nothing here!</p>
+</table>
+<hr>
+<div class="row">
+	<a href="#/members/{{vm.group.$id}}" class="btn btn-default col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1">back to members</a>
+	<!-- <a href="#/group/{{vm.group.$id}}" class="btn btn-default col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1">back to members</a> -->
+	<!-- <button ng-click="vm.save()" class="btn btn-info col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">save</button> -->
+</div>

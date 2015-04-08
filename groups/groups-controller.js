@@ -9,10 +9,6 @@
 	function GroupsCtrl(Backend){
 		var self = this;
 
-		self.groups = null;
-
-		Backend.$getGroups().then(function(groups){
-			self.groups = groups;
-		});
+		self.currentPerson = Backend.$getCurrentPerson();
 	}
 })();
