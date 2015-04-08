@@ -1,4 +1,5 @@
 # friendsbook
+A group based chat application, utilizing Facebook oAuth for authentication, AngularJS for the front-end and Firebase for the backend.
 
 ### Database Schema
 
@@ -7,7 +8,7 @@
     	groupkey1:{
             title:title,
             description:description,
-            private:private
+            private:private    //Might be removed and become the default
     	}
     	groupkey2:{...}
     }
@@ -17,11 +18,17 @@ Used to store my own user data as the Auth Document is not searchable/viewable. 
 
     people {
     	uid1:{
-            username:username,
-            groups:{
+    	    id: id1,
+            displayName: name,
+            ageRange: {
+                min:21
+            }
+            gender: male,
+            groups: {
                  groupkey1: true,
                  groupkey2: false
-            }
+            },
+            profilePhotoURL: URL
     	}
     	uid2:{...}
     }
@@ -31,9 +38,9 @@ When someone gets invited to the list, they get added to the member list with a 
 
     members {
     	groupkey1:{
-            username1:true,    // True means a user has accepted invitation
-            username2:true,
-            username3:false    // False means a user has not responded to an invitation
+            uid1:true,    // True means a user has accepted invitation
+            uid2:true,
+            uid3:false    // False means a user has not responded to an invitation
     	}
     	groupkey2:{...}
     }
@@ -43,7 +50,6 @@ When someone gets invited to the list, they get added to the member list with a 
     	groupkey1:{
     		message1:{
     			uid:uid,
-    			username:username // DEPRECATED
     			message:message
     		}
     		message2:{...}
@@ -51,3 +57,6 @@ When someone gets invited to the list, they get added to the member list with a 
     	}
     	groupkey2:{...}
     }
+
+### Database Rules & Security
+in progress...
