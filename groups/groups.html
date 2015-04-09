@@ -1,20 +1,34 @@
-<h4>
-	<a class="" href="#/create-group">create a new group!</a>
-</h4>
-<hr>
 
-<h4> Joined Groups </h4>
+
+
+<!-- <h4 class="text-muted"> Joined Groups </h4> -->
+<!-- <p class="lead text-muted"> Joined groups </p>
 <p ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="status">
 	<span grouplink groupid="groupId"></span>
 </p>
 </div>
-<hr>
+<hr> -->
 
+<!-- <h4 class="text-muted"> Invited groups </h4> -->
+<!-- <p class="lead text-muted"> Invited groups </p> -->
 
-<h4> Invited groups </h4>
-<p ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="!status">
+<!-- <p ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="!status">
 	<span grouplink groupid="groupId"></span>
-</p>
-
-
-
+</p> -->
+<p class="lead text-muted"> Joined groups </p>
+<div class="list-group">
+	<div class="list-group-item" ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="status">
+		<span grouplink groupid="groupId"></span>
+	</div>
+</div>
+<hr>
+<p class="lead text-muted"> Invited groups </p>
+<div class="list-group">
+	<div class="list-group-item" ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="!status">
+		<span grouplink groupid="groupId"></span>
+	</div>
+</div>
+<hr>
+<h4>
+	<a class="btn btn-default btn-block btn-lg" href="#/create-group">create a new group!</a>
+</h4>

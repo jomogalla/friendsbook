@@ -39,6 +39,13 @@ h3 .active{
   width: 50px;
   height: 50px;
 }
+.square-bottom{
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.table tbody>tr>td.vert-align{
+    vertical-align: middle;
+}
 
 /* Spin */
 .spin {

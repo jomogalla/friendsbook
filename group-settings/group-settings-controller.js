@@ -11,17 +11,11 @@
 
 		self.save = save;
 
-		self.groupId = $routeParams.key;
 		self.group = Backend.$getGroup($routeParams.key)
 
-		// Backend.$getGroup($routeParams.key).then(function(group){
-		// 	self.group = group;
-		// });
-
 		function save(){
-			Backend.$saveGroup(self.group).then(function(){
-				$location.path('/group/'+ self.groupId);
-			});
+			console.log(self.group);
+			Backend.$saveGroup(self.group);
 		}
 	}
 })();

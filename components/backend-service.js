@@ -56,15 +56,26 @@
 
 			// Group Functions
 			function createGroup(groupObject){
-				return groups.$add(groupObject).then(function(data){
+				// var groups = $firebaseArray(ref.child('groups'));
+				// var newGroup =  ref.child('groups').push(groupObject);
+				// console.log($firebaseObject(newGroup));
+				// return newGroup;
+				return $firebaseArray(ref.child('groups')).$add(groupObject).then(function(data){
 					return data;
-				});			
+				});
+				// return groups.$add(groupObject).then(function(data){
+				// 	return data;
+				// });			
 			}
 
 			function saveGroup(groupObject){
-				return groups.$save(groupObject).then(function(data){
-					return data;
-				});
+				// console.log(groupObject);
+				return groupObject.$save();
+				// var group = $firebaseObject(ref.child('groups').child(groupObject.$id));
+				// group.$save();
+				// return groups.$save(groupObject).then(function(data){
+				// 	return data;
+				// });
 			}
 
 			// QUESTION Debating whether or not this should be passed the group id

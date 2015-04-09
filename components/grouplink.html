@@ -1,10 +1,13 @@
-<h4>
+<!-- <h4>
 	<a href="#/group/{{group.$id}}">
-		<!-- Title -->
 		<span ng-show="group.title" ng-bind="group.title"></span> 
-		<!-- Description -->
 		<small ng-bind="group.description"></small>
-		<!-- Loading Icon -->
 		<span ng-show="!group.title" class="glyphicon glyphicon-hourglass spin"></span>
 	</a>
-</h4>
+</h4> -->
+
+  <a href="#/group/{{group.$id}}">
+    <h4 class="list-group-item-heading" ng-show="group.title" ng-bind="group.title"></h4>
+    <p class="list-group-item-text" ng-bind="group.description"></p>
+    <span ng-show="!group.title" class="glyphicon glyphicon-hourglass spin"></span>
+  </a>
