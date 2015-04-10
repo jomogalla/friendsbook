@@ -10,14 +10,5 @@
 		self = this;
 
 		self.group = Backend.$getGroup($routeParams.key);
-
-		// activate();
-
-		// function activate(){
-		// 	Backend.$getGroup($routeParams.key).then(function(group){
-		// 		self.group = group
-		// 	});
-
-		// }
 	}
 })();

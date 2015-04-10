@@ -15,13 +15,6 @@
 				controllerAs: 'vm',
 				authRequired: true
 			})
-			.when('/register', {
-				// templateUrl : 'register/register.html',
-				// controller: 'RegisterCtrl',
-				// controllerAs: 'vm',
-				// authRequired: false
-				redirectTo: '/login'
-			})
 			.when('/create-group', {
 				templateUrl : 'create-group/create-group.html',
 				controller: 'CreateGroupCtrl',
@@ -99,7 +92,6 @@
 
 		if ($rootScope.authData) {
 			console.log("User " + $rootScope.authData.uid + " is logged in with " + $rootScope.authData.provider);
-			// console.log($rootScope.authData);
 		} else {
 			console.log("User is logged out");
 		}

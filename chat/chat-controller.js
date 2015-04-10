@@ -16,10 +16,6 @@
 		self.messages = Backend.$getMessages();
 		self.group = Backend.$getGroup($routeParams.key);
 
-		// Backend.$getGroup($routeParams.key).then(function(group){
-		// 	self.group = group
-		// });
-
 		function submitMessage(){
 			Backend.$addMessage(self.inputText);
 			self.inputText = "";

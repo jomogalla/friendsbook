@@ -15,12 +15,6 @@
 		self.friends = null;
 		self.members = null;
 
-		// Backend.$getGroup($routeParams.key)
-		// 	.then(function(group){
-		// 		self.group = group;
-				
-		// 	});
-
 		Facebook.getFriends()
 			.then(function(data){
 				self.friends = data.data;

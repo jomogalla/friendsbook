@@ -13,7 +13,6 @@
 					if(friendObject[index].name.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0){
 						cleanedFriends.push(friendObject[index]);
 					}
-
 				}
 				return cleanedFriends;
 			};

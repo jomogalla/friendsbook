@@ -34,11 +34,8 @@
 								scope.person.profilePhotoURL = url;
 							});
 					});
-					
 				}
 			});
-
 		}
-		
 	}
 })();

@@ -19,16 +19,11 @@
 		self.group.private = false;
 
 		function createGroup(){
-			// var newGroup = Backend.$createGroup(self.group);
-			// Backend.$acceptMember(newGroup.$id, $rootScope.authData.uid);
-			// $location.path('/invite-members/' + newGroup.$id);
-			Backend.$createGroup(self.group).then(function(ref){
-				var id = ref.key();
-
+			var returnedGroup = Backend.$createGroup(self.group);
 				// Add the person to the group
-				Backend.$acceptMember(id, $rootScope.authData.uid);
-				$location.path('/invite-members/' + id);
-			});
+				Backend.$acceptMember(returnedGroup.$id, $rootScope.authData.uid).then(function(){
+					$location.path('/invite-members/' + returnedGroup.$id);	
+				});
 		}
 	}
 })();

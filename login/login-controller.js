@@ -30,7 +30,6 @@
 				.then(function(authData) {
 					$rootScope.authData = authData;
 
-					// Backend.$getCurrentPerson().$loaded().then(function(person){
 					var updatedPerson = {
 						id: $rootScope.authData.facebook.id,
 						displayName: $rootScope.authData.facebook.displayName,
@@ -41,7 +40,6 @@
 
 					Backend.$updatePerson($rootScope.authData.uid, updatedPerson);
 					$location.path('/');
-					// });
 				}).catch(function(error) {
   					console.error("Authentication failed:", error);
 				});

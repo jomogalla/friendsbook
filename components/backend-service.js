@@ -5,12 +5,9 @@
 		.module('app')
 		.service('Backend', Backend);
 
-		Backend.$inject = ['$firebaseObject', '$firebaseArray', '$firebaseAuth', '$rootScope', '$routeParams'];
-		function Backend($firebaseObject, $firebaseArray, $firebaseAuth, $rootScope, $routeParams){
+		Backend.$inject = ['$firebaseObject', '$firebaseArray', '$firebaseAuth', '$rootScope', '$routeParams', '$q'];
+		function Backend($firebaseObject, $firebaseArray, $firebaseAuth, $rootScope, $routeParams, $q){
 			var ref = new Firebase("https://blistering-torch-1950.firebaseio.com");
-
-			// FIX - do this for the rest of everything plz
-			// var groups = $firebaseArray(ref.child('groups'));
 
 			var service = {
 				// Person Methods
@@ -37,7 +34,7 @@
 			}
 			return service;
 
-			// Person Functions
+			// ***** PERSON FUNCTIONS ***** //
 			function createPerson(userObject){
 				return ref.child('people').child($rootScope.authData.uid).set(userObject);
 			}
@@ -54,71 +51,47 @@
 				return ref.child('people').child(uid).update(updatedPerson);
 			}
 
-			// Group Functions
+			// ***** GROUP FUNCTIONS ***** //
 			function createGroup(groupObject){
-				// var groups = $firebaseArray(ref.child('groups'));
-				// var newGroup =  ref.child('groups').push(groupObject);
-				// console.log($firebaseObject(newGroup));
-				// return newGroup;
-				return $firebaseArray(ref.child('groups')).$add(groupObject).then(function(data){
-					return data;
-				});
-				// return groups.$add(groupObject).then(function(data){
-				// 	return data;
-				// });			
+				return $firebaseObject(ref.child('groups').push(groupObject));			
 			}
 
 			function saveGroup(groupObject){
-				// console.log(groupObject);
 				return groupObject.$save();
-				// var group = $firebaseObject(ref.child('groups').child(groupObject.$id));
-				// group.$save();
-				// return groups.$save(groupObject).then(function(data){
-				// 	return data;
-				// });
 			}
 
 			// QUESTION Debating whether or not this should be passed the group id
 			function getGroup(groupId){
 				return $firebaseObject(ref.child('groups').child(groupId));
-				// return groups.$loaded().then(function(){
-				// 	return groups.$getRecord(groupId);
-				// });
 			}
 
-			// function getGroups(){
-			// 	return groups.$loaded().then(function(){
-			// 		return groups;
-			// 	});
-			// }
-
-			// Members Functions
+			// ***** MEMBER FUNCTIONS ***** //
 			function inviteMember(groupId, uid){
-				ref.child('people').child(uid).child('groups').child(groupId).set(false);
-				ref.child('members').child(groupId).child(uid).set(false);
-				// FIX need to return a promise...
-				return ('whatever');
+				return $q.all(
+					ref.child('people').child(uid).child('groups').child(groupId).set(false),
+					ref.child('members').child(groupId).child(uid).set(false)
+				);
 			}
 
 			function removeMember(groupId, uid){
-				ref.child('people').child(uid).child('groups').child(groupId).remove();
-				ref.child('members').child(groupId).child(uid).remove();
-				// FIX need to return a promise...
-				return('whatever');
+				return $q.all(
+					ref.child('people').child(uid).child('groups').child(groupId).remove(),
+					ref.child('members').child(groupId).child(uid).remove()
+				);
 			}
 
 			function acceptMember(groupId, uid){
-				ref.child('people').child(uid).child('groups').child(groupId).set(true);
-				ref.child('members').child(groupId).child(uid).set(true);
-				// FIX need to return a promise...
-				return('whatever');
+				return $q.all(
+					ref.child('people').child(uid).child('groups').child(groupId).set(true),
+					ref.child('members').child(groupId).child(uid).set(true)
+				);
 			}
 
 			function getMembers(groupId){
 				return $firebaseObject(ref.child('members').child(groupId));
 			}
 
-			// Message Functions
+			// ***** MESSAGE FUNCTIONS ***** //
 			function getMessages(){
 				return $firebaseObject(ref.child('messages').child($routeParams.key));
 			}
