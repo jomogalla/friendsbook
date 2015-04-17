@@ -1,1 +1,83 @@
-/* Empty. Add your own CSS if you like */
+body{
+	/*background-color: #f9f9f9;*/
+	background-color: #f9f9f9;
+	padding-bottom: 30px;
+}
+nav{
+	/*background-color: #BDE8FF;*/
+	background-color: white;
+}
+.label{
+	margin-left: 5px;
+}
+.active{
+	/*border-bottom: 2px solid #337ab7;*/
+	border-bottom: 2px solid #A2C4E2;
+}
+h3 .active{
+	border-bottom: 1px dotted #337ab7;
+	border-top: none;
+}
+.chat .well{
+	max-height: 500px;
+	overflow: scroll;
+}
+.chat img{
+	width: 20px;
+	height: 20px;
+}
+.nav > li{
+  display: inline-block;
+}
+.navbar .nav{
+  float: left;
+}
+.navbar .nav:before{
+  content: "";
+}
+.userlink img{
+  width: 50px;
+  height: 50px;
+}
+.square-bottom{
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.table tbody>tr>td.vert-align{
+    vertical-align: middle;
+}
+
+/* Spin */
+.spin {
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
