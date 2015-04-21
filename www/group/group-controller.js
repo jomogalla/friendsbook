@@ -5,10 +5,10 @@
 		.module('app')
 		.controller('GroupCtrl', GroupCtrl);
 
-	GroupCtrl.$inject = ['$routeParams', 'Backend'];
-	function GroupCtrl($routeParams, Backend){
+	GroupCtrl.$inject = ['$routeParams', '$stateParams', 'Backend'];
+	function GroupCtrl($routeParams, $stateParams, Backend){
 		self = this;
 
-		self.group = Backend.$getGroup($routeParams.key);
+		self.group = Backend.$getGroup($stateParams.key);
 	}
 })();

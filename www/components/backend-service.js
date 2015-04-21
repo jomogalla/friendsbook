@@ -5,8 +5,8 @@
 		.module('app')
 		.service('Backend', Backend);
 
-		Backend.$inject = ['$firebaseObject', '$firebaseArray', '$firebaseAuth', '$rootScope', '$routeParams', '$q'];
-		function Backend($firebaseObject, $firebaseArray, $firebaseAuth, $rootScope, $routeParams, $q){
+		Backend.$inject = ['$firebaseObject', '$firebaseArray', '$firebaseAuth', '$rootScope', '$routeParams', '$stateParams','$q'];
+		function Backend($firebaseObject, $firebaseArray, $firebaseAuth, $rootScope, $routeParams, $stateParams, $q){
 			var ref = new Firebase("https://blistering-torch-1950.firebaseio.com");
 
 			var service = {
@@ -53,7 +53,7 @@
 
 			// ***** GROUP FUNCTIONS ***** //
 			function createGroup(groupObject){
-				return $firebaseObject(ref.child('groups').push(groupObject));			
+				return $firebaseObject(ref.child('groups').push(groupObject));
 			}
 
 			function saveGroup(groupObject){

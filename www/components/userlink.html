@@ -1,5 +1,6 @@
 <span ng-show="!person" class="glyphicon glyphicon-hourglass spin"></span>
-
-<img ng-src="{{person.profilePhotoURL}}" class="img-circle">
-
-<a href="#/profile/{{person.id}}" class="btn">{{person.displayName}}</a>
+<a class="item item-thumbnail-left" href="#/profile/{{person.id}}">
+    <img ng-src="{{person.profilePhotoURL}}">
+    <h2>{{person.displayName}}</h2>
+    <!-- <p>Nine Inch Nails</p> -->
+</a>

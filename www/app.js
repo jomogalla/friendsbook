@@ -1,89 +1,99 @@
 (function () {
 	'use strict';
-  
+
 	angular
-		.module('app', ['ngRoute', 'firebase'])
+		.module('app', ['ionic', 'ngRoute', 'firebase'])
 		.run(runBlock)
 		.config(routing);
 
-	routing.$inject = ['$routeProvider'];
-	function routing($routeProvider){
-		$routeProvider
-			.when('/', {
-				templateUrl : 'home/home.html',
-				controller: 'HomeCtrl',
-				controllerAs: 'vm',
+	routing.$inject = ['$stateProvider', '$urlRouterProvider'];
+	function routing($stateProvider, $urlRouterProvider){
+		$stateProvider
+			.state('/', {
+				url: '/',
+				templateUrl: 'home/home.html',
+				controller: 'HomeCtrl as vm',
+				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.when('/create-group', {
-				templateUrl : 'create-group/create-group.html',
-				controller: 'CreateGroupCtrl',
-				controllerAs: 'vm',
+			.state('/create-group', {
+				url: '/create-group',
+				templateUrl: 'create-group/create-group.html',
+				controller: 'CreateGroupCtrl as vm',
+				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.when('/invites', {
+			.state('/invites', {
+				url: '/invites',
 				templateUrl : 'invite/invite.html',
-				controller: 'InviteCtrl',
-				controllerAs: 'vm',
+				controller: 'InviteCtrl as vm',
+				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.when('/settings/:key', {
+			.state('group.settings', {
+				url: '/settings/:key',
 				templateUrl : 'group-settings/group-settings.html',
-				controller: 'GroupSettings',
-				controllerAs: 'vm',
+				controller: 'GroupSettings as vm',
+				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.when('/invite-members/:key', {
+			.state('group.invite', {
+				url: '/invite-members/:key',
 				templateUrl : 'group-members/invite-members.html',
-				controller: 'InviteMembersCtrl',
-				controllerAs: 'vm',
+				controller: 'InviteMembersCtrl as vm',
+				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.when('/members/:key', {
+			.state('group.members', {
+				url: '/members/:key',
 				templateUrl : 'group-members/group-members.html',
-				controller: 'GroupMembersCtrl',
-				controllerAs: 'vm',
+				controller: 'GroupMembersCtrl as vm',
+				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.when('/login', {
+			.state('/login', {
+				url: '/login',
 				templateUrl : 'login/login.html',
-				controller: 'LoginCtrl',
-				controllerAs: 'vm',
+				controller: 'LoginCtrl as vm',
+				// controllerAs: 'vm',
 				authRequired: false
 			})
-			.when('/profile', {
+			.state('/profile', {
+				url: '/profile',
 				templateUrl : 'profile/profile.html',
-				controller: 'ProfileCtrl',
-				controllerAs: 'vm',
-				authRequired: true					
+				controller: 'ProfileCtrl as vm',
+				// controllerAs: 'vm',
+				authRequired: true
     		})
-    		.when('/profile/:key', {
-				templateUrl : 'profile/profile.html',
-				controller: 'ProfileCtrl',
-				controllerAs: 'vm',
-				authRequired: true					
-    		})
-    		.when('/groups', {
+    		// .state('/profile/:key', {
+			// 	url: '/profile/:key',
+			// 	templateUrl : 'profile/profile.html',
+			// 	controller: 'ProfileCtrl',
+			// 	controllerAs: 'vm',
+			// 	authRequired: true
+    		// })
+    		.state('groups', {
+				url: '/groups',
 				templateUrl : 'groups/groups.html',
-				controller: 'GroupsCtrl',
-				controllerAs: 'vm',
-				authRequired: true					
+				controller: 'GroupsCtrl as vm',
+				// controllerAs: 'vm',
+				authRequired: true
     		})
-    		.when('/group/:key', {
+    		.state('group', {
+				url: '/group/:key',
 				templateUrl : 'group/group.html',
-				controller: 'GroupCtrl',
-				controllerAs: 'vm',
-				authRequired: true					
+				controller: 'GroupCtrl as vm',
+				// controllerAs: 'vm',
+				authRequired: true
     		})
-    		.when('/chat/:key', {
+    		.state('group.chat', {
+				url: '/chat/:key',
 				templateUrl : 'chat/chat.html',
-				controller: 'ChatCtrl',
-				controllerAs: 'vm',
-				authRequired: true					
-    		})
-    		.otherwise({
-    			redirectTo: '/login'
+				controller: 'ChatCtrl as vm',
+				// controllerAs: 'vm',
+				authRequired: true
     		});
+    		$urlRouterProvider.otherwise('/login');
 	}
 
 	runBlock.$inject = ['$rootScope', '$location', 'Auth'];

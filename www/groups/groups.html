@@ -1,4 +1,4 @@
-<p class="lead text-muted"> Joined groups </p>
+<!-- <p class="lead text-muted"> Joined groups </p>
 <div class="list-group">
 	<div class="list-group-item" ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="status">
 		<span grouplink groupid="groupId"></span>
@@ -14,4 +14,26 @@
 <hr>
 <h4>
 	<a class="btn btn-default btn-block btn-lg" href="#/create-group">create a new group!</a>
-</h4>
+</h4> -->
+<ion-view view-title="groups">
+    <ion-content class="padding">
+		<div class="list">
+			<div class="item item-divider">
+		    	joined groups
+		  	</div>
+
+		  	<a class="item" href="#" ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="status">
+				<span grouplink groupid="groupId"></span>
+		  	</a>
+			<div class="item item-divider">
+		    	invited groups
+		  	</div>
+
+		  	<a class="item" href="#" ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="!status">
+				<span grouplink groupid="groupId"></span>
+		  	</a>
+
+
+		</div>
+	</ion-content>
+</ion-view>

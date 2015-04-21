@@ -1,25 +1,29 @@
-<div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div>
+<ion-view view-title="group settings">
+    <ion-content class="padding">
+		<div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div>
 
-<hr>
+		<hr>
 
-<form class="form" name="editGroup" ng-submit="vm.save()" novalidate>
-	<div class="form-group">
-		<label for="description">what should it be called?</label>
-		<input ng-model="vm.group.title" type="text" class="form-control" required="">
-	</div>
-	<div class="form-group">
-		<label for="description"> do you want a description?</label>
-		<textarea ng-model="vm.group.description" type="text" id="description" class="form-control"></textarea>
-	</div>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" ng-model="vm.group.private"> 
-			keep the group private
-		</label>
-	</div>
-	<hr>
-	<div class="row">
-		<a href="#/group/{{vm.groupId}}" class="btn btn-default col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1"> back to group </a>
-		<button class="btn btn-info col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2" type="submit" ng-disabled="!editGroup.$valid"> save </button>	
-	</div>
-</form>
+		<form class="form" name="editGroup" ng-submit="vm.save()" novalidate>
+			<div class="form-group">
+				<label for="description">what should it be called?</label>
+				<input ng-model="vm.group.title" type="text" class="form-control" required="">
+			</div>
+			<div class="form-group">
+				<label for="description"> do you want a description?</label>
+				<textarea ng-model="vm.group.description" type="text" id="description" class="form-control"></textarea>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" ng-model="vm.group.private">
+					keep the group private
+				</label>
+			</div>
+			<hr>
+			<div class="row">
+				<a href="#/group/{{vm.groupId}}" class="btn btn-default col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1"> back to group </a>
+				<button class="btn btn-info col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2" type="submit" ng-disabled="!editGroup.$valid"> save </button>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>
