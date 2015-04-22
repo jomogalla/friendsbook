@@ -16,49 +16,52 @@
 				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.state('/create-group', {
+			.state('create-group', {
 				url: '/create-group',
 				templateUrl: 'create-group/create-group.html',
 				controller: 'CreateGroupCtrl as vm',
 				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.state('/invites', {
+			.state('invites', {
 				url: '/invites',
 				templateUrl : 'invite/invite.html',
 				controller: 'InviteCtrl as vm',
 				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.state('group.settings', {
+			.state('settings', {
+			// .state('group.settings', {
 				url: '/settings/:key',
 				templateUrl : 'group-settings/group-settings.html',
 				controller: 'GroupSettings as vm',
 				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.state('group.invite', {
+			.state('invite', {
+			// .state('group.invite', {
 				url: '/invite-members/:key',
 				templateUrl : 'group-members/invite-members.html',
 				controller: 'InviteMembersCtrl as vm',
 				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.state('group.members', {
+			.state('members', {
+			// .state('group.members', {
 				url: '/members/:key',
 				templateUrl : 'group-members/group-members.html',
 				controller: 'GroupMembersCtrl as vm',
 				// controllerAs: 'vm',
 				authRequired: true
 			})
-			.state('/login', {
+			.state('login', {
 				url: '/login',
 				templateUrl : 'login/login.html',
 				controller: 'LoginCtrl as vm',
 				// controllerAs: 'vm',
 				authRequired: false
 			})
-			.state('/profile', {
+			.state('profile', {
 				url: '/profile',
 				templateUrl : 'profile/profile.html',
 				controller: 'ProfileCtrl as vm',
@@ -86,7 +89,8 @@
 				// controllerAs: 'vm',
 				authRequired: true
     		})
-    		.state('group.chat', {
+    		.state('chat', {
+    		// .state('group.chat', {
 				url: '/chat/:key',
 				templateUrl : 'chat/chat.html',
 				controller: 'ChatCtrl as vm',
@@ -96,8 +100,21 @@
     		$urlRouterProvider.otherwise('/login');
 	}
 
-	runBlock.$inject = ['$rootScope', '$location', 'Auth'];
-	function runBlock($rootScope, $location, Auth){
+	runBlock.$inject = ['$rootScope', '$location', 'Auth', '$ionicPlatform'];
+	function runBlock($rootScope, $location, Auth, $ionicPlatform){
+		$ionicPlatform.ready(function() {
+			// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+			// for form inputs)
+			if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+			}
+			if (window.StatusBar) {
+				// org.apache.cordova.statusbar required
+				StatusBar.styleLightContent();
+			}
+		});
+
+
 		$rootScope.authData = Auth.$getAuth();
 
 		if ($rootScope.authData) {

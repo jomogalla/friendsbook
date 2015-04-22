@@ -5,8 +5,8 @@
 		.module('app')
 		.service('Backend', Backend);
 
-		Backend.$inject = ['$firebaseObject', '$firebaseArray', '$firebaseAuth', '$rootScope', '$routeParams', '$stateParams','$q'];
-		function Backend($firebaseObject, $firebaseArray, $firebaseAuth, $rootScope, $routeParams, $stateParams, $q){
+		Backend.$inject = ['$firebaseObject', '$firebaseArray', '$firebaseAuth', '$rootScope', '$stateParams','$q'];
+		function Backend($firebaseObject, $firebaseArray, $firebaseAuth, $rootScope, $stateParams, $q){
 			var ref = new Firebase("https://blistering-torch-1950.firebaseio.com");
 
 			var service = {
@@ -93,10 +93,10 @@
 
 			// ***** MESSAGE FUNCTIONS ***** //
 			function getMessages(){
-				return $firebaseObject(ref.child('messages').child($routeParams.key));
+				return $firebaseObject(ref.child('messages').child($stateParams.key));
 			}
 			function addMessage(message){
-				return ref.child('messages').child($routeParams.key).push({
+				return ref.child('messages').child($stateParams.key).push({
 					uid: $rootScope.authData.uid,
 					message: message
 				});

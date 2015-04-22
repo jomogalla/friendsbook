@@ -5,18 +5,18 @@
 		.module('app')
 		.controller('GroupMembersCtrl', GroupMembersCtrl);
 
-	GroupMembersCtrl.$inject = ['$routeParams', '$rootScope','$location', 'Facebook', 'Backend'];
-	function GroupMembersCtrl($routeParams, $rootScope, $location, Facebook, Backend){
+	GroupMembersCtrl.$inject = ['$stateParams', '$rootScope','$location', 'Facebook', 'Backend'];
+	function GroupMembersCtrl($stateParams, $rootScope, $location, Facebook, Backend){
 		var self = this;
 
 		// functions
-		self.save = save; 
+		self.save = save;
 
 		// variables
-		self.groupId = $routeParams.key;
+		self.groupId = $stateParams.key;
 		self.currentFacebookId = $rootScope.authData.uid;
 		self.searchText = "";
-		self.group = Backend.$getGroup($routeParams.key);
+		self.group = Backend.$getGroup($stateParams.key);
 		self.friends = null;
 		self.members = null;
 		self.currentUser = null;

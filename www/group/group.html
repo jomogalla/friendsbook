@@ -1,7 +1,20 @@
-<ion-view view-title="home">
-    <ion-content class="padding">
-		<div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div>
+<ion-view>
+	<!-- <div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div> -->
+	<ion-nav-buttons side="left">
+		<button class="button button-clear" ng-click="doSomething()">
+			<i class="icon ion-more"></i>
+		</button>
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<i class="icon ion-pizza"></i>
+	</ion-nav-title>
+	<ion-nav-buttons side="right">
+		<a class="button button-clear" ui-sref="chat({key: vm.group.$id})">
+			<i class="icon ion-chatbubbles"></i>
+		</a>
+    </ion-nav-buttons>
 
+    <ion-content >
 
 		<p class="lead">
 			wellp there aint much here right meow

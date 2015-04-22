@@ -5,13 +5,13 @@
 		.module('app')
 		.controller('GroupSettings', GroupSettings);
 
-	GroupSettings.$inject = ['$routeParams', '$location', 'Backend'];
-	function GroupSettings($routeParams, $location, Backend){
+	GroupSettings.$inject = ['$routeParams', '$stateParams', '$location', 'Backend'];
+	function GroupSettings($routeParams, $stateParams, $location, Backend){
 		var self = this;
 
 		self.save = save;
 
-		self.group = Backend.$getGroup($routeParams.key)
+		self.group = Backend.$getGroup($stateParams.key)
 
 		function save(){
 			console.log(self.group);

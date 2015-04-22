@@ -1,28 +1,31 @@
-<div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div>
-
-<hr>
-
-<div class="chat">
-	<div class="well well-sm">
-		<span ng-show="!vm.messages" class="glyphicon glyphicon-hourglass spin"></span>
-		<ul class="list-unstyled">
-			<li ng-repeat="message in vm.messages" class="animate-repeat"> 
-				<span class="text-info" chatlink uid="message.uid"></span>
-				: {{message.message}}
-			</li>
-		</ul>
-	</div>
-	<form class="form form-horizontal" ng-submit="vm.submitMessage()" name="chatInput" novalidate>
-		<div class="form-group">
-			<div class="col-md-10 col-xs-9">
-				<input type="text" placeholder="friendsbook chat" class="form-control" ng-model="vm.inputText" name="inputText" required="" autofocus>
-			</div>
-			<div class="col-md-2 col-xs-3">
-				<button type="submit" class="btn btn-block btn-info" ng-disabled="!chatInput.$valid">send</button>
-			</div>
+<ion-view>
+	<!-- <div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div> -->
+	<ion-nav-back-button>
+  </ion-nav-back-button>
+	<ion-nav-title>
+		<i class="icon ion-pizza"></i>
+	</ion-nav-title>
+    <ion-content class="padding">
+		<div class="chat">
+				<span ng-show="!vm.messages" class="glyphicon glyphicon-hourglass spin"></span>
+				<ul class="list-unstyled">
+					<li ng-repeat="message in vm.messages" class="animate-repeat">
+						<span class="text-info" chatlink uid="message.uid"></span>
+						: {{message.message}}
+					</li>
+				</ul>
 		</div>
+	</ion-content>
+	<form ng-submit="vm.submitMessage()" name="chatInput" novalidate class="bar bar-footer item-input-inset">
+  		<label class="item-input-wrapper">
+    		<!-- <i class="icon ion-ios7-search placeholder-icon"></i> -->
+    		<input type="text" placeholder="friendsbook chat" ng-model="vm.inputText" name="inputText" required="" autofocus>
+  		</label>
+  		<button type="submit" class="button button-clear" ng-disabled="!chatInput.$valid">
+    		send
+  		</button>
 	</form>
-</div>
+</ion-view>
 <script>
 	// Cheater script to autoscroll chat to the bottom
 	var messageList = $('.well ul');

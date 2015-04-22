@@ -1,20 +1,21 @@
-<div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div>
+<ion-view view-title="{{vm.group.title}}">
+    <div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div>
+    <ion-content class="padding">
+		<h4> current members </h4>
+		<!-- <table class="table table-hover table-responsive"> -->
+			<!-- <tr ng-repeat="(memberId, memberStatus) in vm.members"> -->
+				<div class="list">
+					<span class="userlink" uid="memberId" ng-repeat="(memberId, memberStatus) in vm.members"></span>
+					<span class="invitebutton" uid="memberId"></span>
+				</div>
+				<!-- <td>{{memberId}} - {{memberStatus}}</td> -->
+			<!-- </tr> -->
+			<p ng-hide="vm.friends.length">Nothing here!</p>
+		<!-- </table> -->
 
-<hr>
-
-<h4> current members </h4>
-<table class="table table-hover table-responsive">
-	<tr ng-repeat="(memberId, memberStatus) in vm.members">
-		<td><span class="userlink" uid="memberId"></span></td>
-		<td class="vert-align text-center"><span class="invitebutton" uid="memberId"></span></td>
-		<!-- <td>{{memberId}} - {{memberStatus}}</td> -->
-	</tr>
-	<p ng-hide="vm.friends.length">Nothing here!</p>
-</table>
-
-<hr>
-
-<div class="row">
-	<a href="#/group/{{vm.groupId}}" class="btn btn-default col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1">back to group</a>
-	<a href="#/invite-members/{{vm.groupId}}" class="btn btn-info col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">invite friends</a>
-</div>
+		<!-- <div class="row">
+			<a href="#/group/{{vm.groupId}}" class="btn btn-default col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1">back to group</a>
+			<a href="#/invite-members/{{vm.groupId}}" class="btn btn-info col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">invite friends</a>
+		</div> -->
+	</ion-content>
+</ion-view>
