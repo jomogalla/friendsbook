@@ -1,8 +1,37 @@
-<ion-view view-title="home">
+<ion-view name="home">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" menu-toggle="left">
+            <i class="icon ion-more"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <i class="icon ion-pizza"></i>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <a class="button button-clear" ui-sref="create-group">
+            <i class="icon ion-ios-plus-outline"></i>
+        </a>
+    </ion-nav-buttons>
+    <!-- <div ng-include="'navbar/sidemenu.html'"></div> -->
     <ion-content class="padding">
-        <h2> Welcome to friendsbook<span ng-show="vm.user.displayName" class="text-info">, {{vm.user.displayName}}</span>! </h2>
-        <h4 class="text-gray"> It's a great place where you can meet people, create groups, and chat about whatever </h4>
+        <!-- <h2> Welcome to friendsbook<span ng-show="vm.currentPerson.displayName" class="text-info">, {{vm.currentPerson.displayName}}</span>! </h2> -->
 
-        <p ng-show="vm.user.displayName" class="lead"> Go check out <a href="#/groups">groups</a> to see what people are talking about!</p>
+        <ion-list>
+            <ion-item class="bar-energized">
+                <h2>You've been invited to these groups</h2>
+            </ion-item>
+            <ion-item ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="!status">
+                <span grouplink groupid="groupId"></span>
+                <!-- {{groupId}} -->
+            </ion-item>
+            <ion-item>
+                <h2>You've joined these groups</h2>
+            </ion-item>
+            <ion-item ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="status">
+                <span grouplink groupid="groupId"></span>
+                <!-- {{groupId}} -->
+            </ion-item>
+        </ion-list>
+
     </ion-content>
 </ion-view>

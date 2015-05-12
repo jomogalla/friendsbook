@@ -1,5 +1,18 @@
-<ion-view view-title="{{vm.group.title}}">
-    <div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div>
+<ion-view>
+    <!-- <div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div> -->
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ui-sref="sidemenu.home">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <i class="icon ion-pizza"></i>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ui-sref="invite({key: vm.group.$id})">
+            <i class="icon ion-ios-arrow-right"></i>
+        </button>
+    </ion-nav-buttons>
     <ion-content class="padding">
 		<form class="list" name="editGroup" ng-submit="vm.save()" novalidate>
 				<label for="description" class="item item-input item-floating-label">

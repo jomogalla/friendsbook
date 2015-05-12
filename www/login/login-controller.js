@@ -5,14 +5,18 @@
 		.module('app')
 		.controller('LoginCtrl', LoginCtrl);
 
-	LoginCtrl.$inject = ['$location', '$rootScope', 'Auth', 'Backend'];
-	function LoginCtrl($location, $rootScope, Auth, Backend){
+	LoginCtrl.$inject = ['$location', '$rootScope', 'Auth', 'Backend', 'UserService', 'FACEBOOK_APP_ID', '$q', '$ionicLoading'];
+	function LoginCtrl($location, $rootScope, Auth, Backend, UserService, FACEBOOK_APP_ID, $q, $ionicLoading){
 		var self = this;
+
+		var fbLogged = $q.defer();
 
 		self.login = login;
 		self.facebookLogin = facebookLogin;
 
 		function login(credentials){
+
+
 			Auth.$authWithPassword({
   				email    : credentials.email,
   				password : credentials.password
@@ -26,8 +30,20 @@
 		}
 
 		function facebookLogin(){
-			Auth.$authWithOAuthPopup("facebook", {scope: 'user_friends'})
-				.then(function(authData) {
+			if (!window.cordova) {
+				//this is for browser only
+				facebookConnectPlugin.browserInit(FACEBOOK_APP_ID);
+			}
+
+			facebookConnectPlugin.login(['user_friends'], fbLoginSuccess, fbLoginError);
+
+
+			fbLogged.promise.then(function(authData) {
+
+				var fb_uid = authData.id,
+				fb_access_token = authData.access_token;
+
+				Auth.$authWithOAuthToken("facebook", fb_access_token).then(function(authData) {
 					$rootScope.authData = authData;
 
 					var updatedPerson = {
@@ -40,9 +56,41 @@
 
 					Backend.$updatePerson($rootScope.authData.uid, updatedPerson);
 					$location.path('/');
-				}).catch(function(error) {
-  					console.error("Authentication failed:", error);
+				}, function(error) {
+					console.error("ERROR: " + error);
 				});
+
+
+			});
 		}
+
+		var fbLoginSuccess = function(response) {
+			if (!response.authResponse){
+				fbLoginError("Cannot find the authResponse");
+				return;
+			}
+			var expDate = new Date(
+				new Date().getTime() + response.authResponse.expiresIn * 1000
+			).toISOString();
+
+			var authData = {
+				id: String(response.authResponse.userID),
+				access_token: response.authResponse.accessToken,
+				expiration_date: expDate
+			}
+
+
+			fbLogged.resolve(authData);
+			};
+
+			//This is the fail callback from the login method
+			var fbLoginError = function(error){
+
+			fbLogged.reject(error);
+
+			console.log(error);
+
+			$ionicLoading.hide();
+			};
 	}
 })();

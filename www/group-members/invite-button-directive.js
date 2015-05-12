@@ -9,6 +9,7 @@
 	function InviteButton(Backend){
 		var directive = {
 			restrict: 'C',
+			// replace: true,
 			templateUrl: 'group-members/invite-button.html',
 			scope: {
 				uid: '='
@@ -34,7 +35,7 @@
 			}
 
 			function removeFromGroup(friendId){
-				Backend.$removeMember(scope.$parent.vm.groupId, friendId);		
+				Backend.$removeMember(scope.$parent.vm.groupId, friendId);
 			}
 
 			function _updateMemberStatus(){

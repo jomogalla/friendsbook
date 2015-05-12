@@ -1,22 +1,28 @@
-<div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div>
-
-<hr>
-
-<h4> invite friends </h4>
-<input type="text" class="form-control square-bottom" placeholder="search friends" ng-model="vm.searchText">
-<table class="table table-hover table-responsive">
-<!-- 	<tr>
-		<td> <span userlink uid="vm.currentFacebookId"></span><span class=""> (you)</span></td>
-		<td><span invitebutton uid="vm.currentFacebookId"></span></td>
-	</tr> -->
-	<tr ng-repeat="friend in vm.friends | FriendSearch:vm.searchText">
-		<td> <span class="userlink" uid="friend.uid"></span></td>
-		<td class="vert-align text-center"><span class="invitebutton" uid="friend.uid"></span></td>
-		<!-- <td>{{friend}}</td> -->
-	</tr>
-	<p ng-hide="vm.friends.length">Nothing here!</p>
-</table>
-<hr>
-<div class="row">
-	<a href="#/members/{{vm.group.$id}}" class="btn btn-default col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1">back to members</a>
-</div>
+<ion-view>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ui-sref="settings({key: vm.group.$id})">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+		<i class="icon ion-pizza"></i>
+	</ion-nav-title>
+    <ion-content class="padding">
+		<h4> invite friends </h4>
+		<div class="list">
+			<label class="item item-input item-floating-label">
+				<span class="input-label">search for friends</span>
+				<input type="text" class="form-control square-bottom" placeholder="search friends" ng-model="vm.searchText">
+			</label>
+		</div>
+		<div class="list">
+			<div class="item item-avatar item-button-right" ng-repeat="friend in vm.friends | FriendSearch:vm.searchText">
+                <img class="userImg" uid="friend.uid">
+				<span class="userlink" uid="friend.uid"></span>
+				<span class="invitebutton" uid="friend.uid"></span>
+                <button class="button">hi</button>
+			</div>
+		</div>
+        <a ui-sref="group({key: vm.group.$id})" class="button button-block button-positive"> create group</a>
+	</ion-content>
+</ion-view>

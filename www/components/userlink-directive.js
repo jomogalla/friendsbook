@@ -9,6 +9,7 @@
 	function UserLink(Facebook, Backend, $rootScope){
 		var directive = {
 			restrict: 'C',
+			replace: true,
 			templateUrl: 'components/userlink.html',
 			scope: {
 				uid: '='

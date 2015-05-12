@@ -18,9 +18,8 @@
 		return directive;
 
 		function link(scope, element, attrs){
-			scope.group = null;
-
 			scope.group = Backend.$getGroup(scope.groupid)
+			scope.members = Backend.$getMembers(scope.groupid);
 		}
 	}
 })();
