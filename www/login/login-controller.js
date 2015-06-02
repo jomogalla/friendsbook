@@ -11,23 +11,7 @@
 
 		var fbLogged = $q.defer();
 
-		self.login = login;
 		self.facebookLogin = facebookLogin;
-
-		function login(credentials){
-
-
-			Auth.$authWithPassword({
-  				email    : credentials.email,
-  				password : credentials.password
-			}).then(function(userData) {
-				$rootScope.authData = Auth.$getAuth();
-				console.log("User logged in with uid: " + userData.uid);
-				$location.path('/');
-			}).catch(function(error) {
-				console.log(error)
-      		});
-		}
 
 		function facebookLogin(){
 			if (!window.cordova) {
@@ -35,62 +19,72 @@
 				facebookConnectPlugin.browserInit(FACEBOOK_APP_ID);
 			}
 
-			facebookConnectPlugin.login(['user_friends'], fbLoginSuccess, fbLoginError);
+			facebookConnectPlugin.getLoginStatus(function(success){
+				// alert(success.status);
+				if(success.status === 'connected'){
+					// the user is logged in and has authenticated your app, and response.authResponse supplies
+					// the user's ID, a valid access token, a signed request, and the time the access token
+					// and signed request each expire
+					$state.go('sidemenu.home');
+					// console.log("STATE BITCHES");
+
+				} else {
+
+					facebookConnectPlugin.login(['user_friends'], fbLoginSuccess, fbLoginError);
 
 
-			fbLogged.promise.then(function(authData) {
+					fbLogged.promise.then(function(authData) {
+						console.log('yolo');
 
-				var fb_uid = authData.id,
-				fb_access_token = authData.access_token;
+						var fb_uid = authData.id,
+						fb_access_token = authData.access_token;
 
-				Auth.$authWithOAuthToken("facebook", fb_access_token).then(function(authData) {
-					$rootScope.authData = authData;
+						Auth.$authWithOAuthToken("facebook", fb_access_token).then(function(authData) {
+							$rootScope.authData = authData;
 
-					var updatedPerson = {
-						id: $rootScope.authData.facebook.id,
-						displayName: $rootScope.authData.facebook.displayName,
-						profilePhotoURL: $rootScope.authData.facebook.cachedUserProfile.picture.data.url,
-						gender: $rootScope.authData.facebook.cachedUserProfile.gender,
-						ageRange: $rootScope.authData.facebook.cachedUserProfile.age_range
-					}
+							var updatedPerson = {
+								id: $rootScope.authData.facebook.id,
+								displayName: $rootScope.authData.facebook.displayName,
+								profilePhotoURL: $rootScope.authData.facebook.cachedUserProfile.picture.data.url,
+								gender: $rootScope.authData.facebook.cachedUserProfile.gender,
+								ageRange: $rootScope.authData.facebook.cachedUserProfile.age_range
+							}
 
-					Backend.$updatePerson($rootScope.authData.uid, updatedPerson);
-					$location.path('/');
-				}, function(error) {
-					console.error("ERROR: " + error);
-				});
-
-
+							Backend.$updatePerson($rootScope.authData.uid, updatedPerson);
+							$location.path('/');
+						}, function(error) {
+							console.error("ERROR: " + error);
+						});
+					});
+				}
 			});
-		}
 
-		var fbLoginSuccess = function(response) {
-			if (!response.authResponse){
-				fbLoginError("Cannot find the authResponse");
-				return;
-			}
-			var expDate = new Date(
-				new Date().getTime() + response.authResponse.expiresIn * 1000
-			).toISOString();
+			var fbLoginSuccess = function(response) {
+				if (!response.authResponse){
+					fbLoginError("Cannot find the authResponse");
+					return;
+				}
+				var expDate = new Date(
+					new Date().getTime() + response.authResponse.expiresIn * 1000
+				).toISOString();
 
-			var authData = {
-				id: String(response.authResponse.userID),
-				access_token: response.authResponse.accessToken,
-				expiration_date: expDate
-			}
+				var authData = {
+					id: String(response.authResponse.userID),
+					access_token: response.authResponse.accessToken,
+					expiration_date: expDate
+				}
 
-
-			fbLogged.resolve(authData);
+				fbLogged.resolve(authData);
 			};
 
-			//This is the fail callback from the login method
+				//This is the fail callback from the login method
 			var fbLoginError = function(error){
+				fbLogged.reject(error);
 
-			fbLogged.reject(error);
+				console.log(error);
 
-			console.log(error);
-
-			$ionicLoading.hide();
+				$ionicLoading.hide();
 			};
+		}
 	}
 })();

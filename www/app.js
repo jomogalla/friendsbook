@@ -8,7 +8,6 @@
 
 	routing.$inject = ['$stateProvider', '$urlRouterProvider'];
 	function routing($stateProvider, $urlRouterProvider){
-
 		$stateProvider
 			.state('sidemenu', {
 				url : '/sidemenu',
@@ -115,11 +114,35 @@
     		$urlRouterProvider.otherwise('/sidemenu/home');
 	}
 
-	runBlock.$inject = ['$rootScope', '$location', 'Auth', '$ionicPlatform'];
-	function runBlock($rootScope, $location, Auth, $ionicPlatform){
-		// FBC.init(679172528872512);
+	runBlock.$inject = ['$rootScope', '$location', 'Auth', '$ionicPlatform', '$state'];
+	function runBlock($rootScope, $location, Auth, $ionicPlatform, $state){
+		
 
 		$ionicPlatform.ready(function() {
+
+			facebookConnectPlugin.browserInit(679172528872512);
+
+			facebookConnectPlugin.getLoginStatus(function(success){
+				if(success.status === 'connected'){
+					console.log('logged in!');
+					console.log($rootScope);
+					facebookConnectPlugin.getAccessToken(gotAccessToken, notAccessToken);
+
+					function gotAccessToken(response){
+						Auth.$authWithOAuthToken("facebook", response).then(function(authData) {
+							$rootScope.authData = authData;
+							$state.go('sidemenu.home');
+						});
+					}
+					function notAccessToken(response){
+						console.log(response);
+					}
+				}else{
+					$state.go('login');
+					console.log('not logged in :(');
+				}
+			});
+
 			// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 			// for form inputs)
 			if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -140,7 +163,7 @@
 			console.log("User is logged out");
 		}
 
-		$rootScope.$on('$routeChangeStart', function(event, next){
+		$rootScope.$on('$stateChangeStart', function(event, next){
 			if(next.authRequired && !$rootScope.authData){
 				$location.path('/login');
 			}else if($rootScope.authData && (next.templateUrl === 'login/login.html' || next.templateUrl === 'register/register.html')){
