@@ -12,21 +12,11 @@
             <i class="icon ion-ios-plus-outline"></i>
         </a>
     </ion-nav-buttons>
-    <!-- <div ng-include="'navbar/sidemenu.html'"></div> -->
-    <ion-content class="padding">
-        <!-- <h2> Welcome to friendsbook<span ng-show="vm.currentPerson.displayName" class="text-info">, {{vm.currentPerson.displayName}}</span>! </h2> -->
-
+    <ion-content>
         <ion-list>
-            <ion-item class="bar-energized">
-                <h2>You've been invited to these groups</h2>
-            </ion-item>
-            <ion-item ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="!status">
-                <span grouplink groupid="groupId"></span>
-                <!-- {{groupId}} -->
-            </ion-item>
-            <ion-item>
-                <h2>You've joined these groups</h2>
-            </ion-item>
+<!--             <ion-item>
+                <h2>Your groups</h2>
+            </ion-item> -->
             <ion-item ng-repeat="(groupId, status) in vm.currentPerson.groups" ng-show="status">
                 <span grouplink groupid="groupId"></span>
                 <!-- {{groupId}} -->

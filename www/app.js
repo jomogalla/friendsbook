@@ -4,22 +4,20 @@
 	angular
 		.module('app', ['ionic', 'ngRoute', 'firebase'])
 		.run(runBlock)
-		.config(routing);
+		.config(config);
 
-	routing.$inject = ['$stateProvider', '$urlRouterProvider'];
-	function routing($stateProvider, $urlRouterProvider){
+	config.$inject = ['$stateProvider', '$urlRouterProvider'];
+	function config($stateProvider, $urlRouterProvider){
 		$stateProvider
 			.state('sidemenu', {
 				url : '/sidemenu',
 				templateUrl : 'navbar/sidemenu.html',
+				controller: 'SidemenuCtrl as menu',
 				abstract : true,
-				// controller : 'FstController'
 				authRequired: true
 			})
 			.state('sidemenu.home', {
 				url: '/home',
-				// templateUrl: 'home/home.html',
-				// controller: 'HomeCtrl as vm',
 				views: {
 					'pageContent' :{
 						templateUrl: "home/home.html",
@@ -28,22 +26,8 @@
 				},
 				authRequired: true
 			})
-			.state('group', {
-				url: '/group/:key',
-				templateUrl : 'group/group.html',
-				controller: 'GroupCtrl as vm',
-				// views: {
-				// 	'pageContent' :{
-				// 		templateUrl : 'group/group.html',
-				// 		controller: 'GroupCtrl as vm'
-				// 	}
-				// },
-				authRequired: true
-    		})
 			.state('sidemenu.profile', {
 				url: '/profile',
-				// templateUrl : 'profile/profile.html',
-				// controller: 'ProfileCtrl as vm',
 				views: {
 					'pageContent' :{
 						templateUrl : 'profile/profile.html',
@@ -52,34 +36,44 @@
 				},
 				authRequired: true
 			})
+			.state('sidemenu.invites', {
+				url: '/invites',
+				views: {
+					'pageContent' :{
+						templateUrl : 'invite/invite.html',
+						controller: 'InviteCtrl as vm',
+					}
+				},
+				// templateUrl : 'invite/invite.html',
+				// controller: 'InviteCtrl as vm',
+				authRequired: true
+			})
+			.state('group', {
+				url: '/group/:key',
+				templateUrl : 'group/group.html',
+				controller: 'GroupCtrl as vm',
+				authRequired: true
+    		})
 			.state('create-group', {
 				url: '/create-group',
 				templateUrl: 'create-group/create-group.html',
 				controller: 'CreateGroupCtrl as vm',
 				authRequired: true
 			})
-			.state('invites', {
-				url: '/invites',
-				templateUrl : 'invite/invite.html',
-				controller: 'InviteCtrl as vm',
-				authRequired: true
-			})
+
 			.state('settings', {
-			// .state('group.settings', {
 				url: '/settings/:key',
 				templateUrl : 'group-settings/group-settings.html',
 				controller: 'GroupSettings as vm',
 				authRequired: true
 			})
 			.state('invite', {
-			// .state('group.invite', {
 				url: '/invite-members/:key',
 				templateUrl : 'group-members/invite-members.html',
 				controller: 'InviteMembersCtrl as vm',
 				authRequired: true
 			})
 			.state('members', {
-			// .state('group.members', {
 				url: '/members/:key',
 				templateUrl : 'group-members/group-members.html',
 				controller: 'GroupMembersCtrl as vm',
@@ -91,21 +85,7 @@
 				controller: 'LoginCtrl as vm',
 				authRequired: false
 			})
-    		// .state('/profile/:key', {
-			// 	url: '/profile/:key',
-			// 	templateUrl : 'profile/profile.html',
-			// 	controller: 'ProfileCtrl',
-			// 	controllerAs: 'vm',
-			// 	authRequired: true
-    		// })
-    		.state('groups', {
-				url: '/groups',
-				templateUrl : 'groups/groups.html',
-				controller: 'GroupsCtrl as vm',
-				authRequired: true
-    		})
     		.state('chat', {
-    		// .state('group.chat', {
 				url: '/chat/:key',
 				templateUrl : 'chat/chat.html',
 				controller: 'ChatCtrl as vm',
@@ -116,60 +96,83 @@
 
 	runBlock.$inject = ['$rootScope', '$location', 'Auth', '$ionicPlatform', '$state'];
 	function runBlock($rootScope, $location, Auth, $ionicPlatform, $state){
+
+		if(!$rootScope.authData){
+			$rootScope.authData = Auth.$getAuth();
+		}
 		
 
-		$ionicPlatform.ready(function() {
+		// if(!$rootScope.authData){
+		// 	facebookConnectPlugin.getAccessToken(gotAccessToken, notAccessToken);
+
+		// 	function gotAccessToken(response){
+		// 		Auth.$authWithOAuthToken("facebook", response).then(function(authData) {
+		// 			$rootScope.authData = authData;
+		// 			$state.go('sidemenu.home');
+		// 		});
+		// 	}
+
+		// 	function notAccessToken(response){
+		// 		console.log(response);
+		// 	}
+		// }
+
+		$ionicPlatform.on("deviceready", function(){
+
 
 			facebookConnectPlugin.browserInit(679172528872512);
+			// if (!window.cordova) {
+				//this is for browser only
+				// facebookConnectPlugin.browserInit(679172528872512);
+			// }
 
-			facebookConnectPlugin.getLoginStatus(function(success){
-				if(success.status === 'connected'){
-					console.log('logged in!');
-					console.log($rootScope);
-					facebookConnectPlugin.getAccessToken(gotAccessToken, notAccessToken);
-
-					function gotAccessToken(response){
-						Auth.$authWithOAuthToken("facebook", response).then(function(authData) {
-							$rootScope.authData = authData;
-							$state.go('sidemenu.home');
-						});
-					}
-					function notAccessToken(response){
-						console.log(response);
-					}
-				}else{
-					$state.go('login');
-					console.log('not logged in :(');
-				}
-			});
 
 			// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 			// for form inputs)
-			if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+			if(window.cordova && window.cordova.plugins.Keyboard) {
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			}
-			if (window.StatusBar) {
-				// org.apache.cordova.statusbar required
-				StatusBar.styleLightContent();
+			if(window.StatusBar) {
+				StatusBar.styleDefault();
 			}
 		});
 
+		$ionicPlatform.on("resume", function(){
+			facebookConnectPlugin.getLoginStatus(function(success){
+				if(success.status === 'connected'){
+					facebookConnectPlugin.getAccessToken(gotAccessToken, notAccessToken);
 
-		$rootScope.authData = Auth.$getAuth();
+				} else {
+					$state.go('login');
+				}
+			});
+		});
 
-		if ($rootScope.authData) {
-			console.log("User " + $rootScope.authData.uid + " is logged in with " + $rootScope.authData.provider);
-		} else {
-			console.log("User is logged out");
+		// UI Router Authentication Check
+		$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+			if (toState.authRequired) {
+				facebookConnectPlugin.getLoginStatus(function(success){
+					if(success.status !== 'connected') {
+						event.preventDefault();
+						$state.go('login');
+					}
+				},
+				function(fail){
+				});
+			}
+		});
+
+		function gotAccessToken(response){
+			Auth.$authWithOAuthToken("facebook", response).then(function(authData) {
+				$rootScope.authData = authData;
+				$state.go('sidemenu.home');
+			});
 		}
-
-		$rootScope.$on('$stateChangeStart', function(event, next){
-			if(next.authRequired && !$rootScope.authData){
-				$location.path('/login');
-			}else if($rootScope.authData && (next.templateUrl === 'login/login.html' || next.templateUrl === 'register/register.html')){
-				$location.path('/groups');
-			}
-		});
+		function notAccessToken(response){
+			console.log(response);
+		}
 	}
+
+
 
 })();

@@ -12,9 +12,9 @@
 		<div class="chat">
 				<span ng-show="!vm.messages" class="glyphicon glyphicon-hourglass spin"></span>
 				<ul class="list-unstyled">
-					<li ng-repeat="message in vm.messages" class="animate-repeat">
-						<span class="text-info" chatlink uid="message.uid"></span>
-						: {{message.message}}
+					<li ng-repeat="message in vm.messages" class="animate-repeat" ng-class="{userMessage: message.uid === vm.currentUser.$id}">
+						<span class="text-name" chatlink uid="message.uid"></span>
+						<span class="text-body"> {{message.message}}</span>
 					</li>
 				</ul>
 		</div>

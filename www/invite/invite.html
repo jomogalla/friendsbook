@@ -1,14 +1,21 @@
-<div class="" ng-show="!vm.hasInvitation">
-	<p class="lead">You don't seem to have any current invites :()</p>
-</div>
-
-<div class="list-group" ng-repeat="(groupId, inviteStatus) in vm.currentUser.groups" ng-show="!inviteStatus">
-	<div class="list-group-item">
-		<span grouplink groupid="groupId"></span>
-		<hr>
-		<div class="row">
-			<button class="btn btn-default col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1" ng-click="vm.rejectInvitation(groupId)">reject invitation</button>
-			<button class="btn btn-info col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2" ng-click="vm.acceptInvitation(groupId)">accept invitation</button>
-		</div>
-	</div>
-</div>
+<ion-view view-title="notifications">
+	<ion-nav-buttons side="left">
+        <button class="button button-clear" menu-toggle="left">
+            <i class="icon ion-more"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+	<h3 class="padding center bar-energized">Your Pending Invites</h3>
+    <ion-list>
+        <ion-item ng-repeat="(groupId, status) in vm.currentUser.groups" ng-show="!status">
+            <span grouplink groupid="groupId"></span>
+           	<div class="row">
+           		<div class="button-bar padding">
+					<button class="button" ng-click="vm.rejectInvitation(groupId)">reject invitation</button>
+					<button class="button button-calm" ng-click="vm.acceptInvitation(groupId)">accept invitation</button>
+				</div>
+			</div>
+        </ion-item>
+    </ion-list>
+	</ion-content>
+</ion-view>
