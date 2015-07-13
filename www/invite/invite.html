@@ -1,11 +1,11 @@
-<ion-view view-title="notifications">
+<ion-view view-title="invites">
 	<ion-nav-buttons side="left">
         <button class="button button-clear" menu-toggle="left">
             <i class="icon ion-more"></i>
         </button>
     </ion-nav-buttons>
     <ion-content>
-	<h3 class="padding center bar-energized">Your Pending Invites</h3>
+	<!-- <h3 class="padding center bar-energized">Your Pending Invites</h3> -->
     <ion-list>
         <ion-item ng-repeat="(groupId, status) in vm.currentUser.groups" ng-show="!status">
             <span grouplink groupid="groupId"></span>

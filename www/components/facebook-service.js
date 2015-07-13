@@ -33,7 +33,7 @@
 
 		function getFriends(){
 			$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
-			return $http.get('https://graph.facebook.com/' + currentPersonId +'/friends')
+			return $http.get('https://graph.facebook.com/me/friends')
 						.then(function(data, status, headers, config){
 							for(var i = 0; i < data.data.data.length; i++){
 								_addUid(data.data.data[i]);

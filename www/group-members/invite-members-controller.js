@@ -14,6 +14,7 @@
 		self.group = Backend.$getGroup($stateParams.key);
 		self.friends = null;
 		self.members = null;
+		// self.boards = Backend.$getGameBoards($stateParams.key);
 
 		Facebook.getFriends()
 			.then(function(data){

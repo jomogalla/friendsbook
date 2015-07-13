@@ -1,7 +1,6 @@
 <ion-view>
-	<!-- <div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div> -->
 	<ion-nav-buttons side="left">
-		<button class="button button-clear" ui-sref="sidemenu.home">
+		<button class="button button-clear" ui-sref="app.home">
 			<i class="icon ion-ios-arrow-left"></i>
 		</button>
 	</ion-nav-buttons>
@@ -15,9 +14,27 @@
     </ion-nav-buttons>
 
     <ion-content >
-
-		<p class="lead">
-			wellp there aint much here right meow
-		</p>
+		<h3 class="lead center">
+			{{vm.group.title}}
+		</h3>
+		<div class="button-bar">
+			<button class="button" ng-class="{'button-royal': vm.currentlySelectedUser === '{{member}}'}" ng-repeat="(member, value) in vm.members" ng-click="vm.currentlySelectedUser = '{{member}}'" ui-sref="group.board({user: member})">
+				<span chatlink uid="member"></span>
+			</button>
+		</div>
+		<ui-view></ui-view>
+<!-- 		<div class="bingo-board">
+			<a ui-sref="square({key: vm.group.$id})"class="bingo-square" ng-repeat="square in vm.board" ng-click="vm.completeSquare(square)">
+				<div class="completed-square" ng-show="square.completed">
+					<i class="fa fa-check-circle fa-5x"></i>
+				</div>
+				<div class="square-header">
+					{{square.title}}
+				</div>
+				<div class="square-body">
+					{{square.body}}
+				</div>
+			</a>
+		</div> -->
 	</ion-content>
 </ion-view>

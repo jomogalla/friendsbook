@@ -3,9 +3,9 @@
 	<h1 ng-show="group.title" ng-bind="group.title"></h1>
 	<span ng-bind="group.description"></span> - 
 	
-	<i class="icon ion-android-contacts"></i>&nbsp;
+	<!-- <i class="icon ion-android-contacts"></i>&nbsp; -->
 	<span ng-repeat="(member, value) in members" class="center">
-		<span class="text-info" chatlink uid="member"></span> &nbsp;
+		<span class="text-info" chatlink uid="member"></span>
 	</span>
 	<span ng-show="!group.title" class="glyphicon glyphicon-hourglass spin"></span>
 <!-- </span> -->

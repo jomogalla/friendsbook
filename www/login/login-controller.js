@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('LoginCtrl', LoginCtrl);
 
-	LoginCtrl.$inject = ['$location', '$rootScope', 'Auth', 'Backend', 'UserService', 'FACEBOOK_APP_ID', '$q', '$ionicLoading'];
-	function LoginCtrl($location, $rootScope, Auth, Backend, UserService, FACEBOOK_APP_ID, $q, $ionicLoading){
+	LoginCtrl.$inject = ['$state', '$rootScope', 'Auth', 'Backend', 'UserService', 'FACEBOOK_APP_ID', '$q', '$ionicLoading'];
+	function LoginCtrl($state, $rootScope, Auth, Backend, UserService, FACEBOOK_APP_ID, $q, $ionicLoading){
 		var self = this;
 
 		var fbLogged = $q.defer();
@@ -25,8 +25,31 @@
 					// the user is logged in and has authenticated your app, and response.authResponse supplies
 					// the user's ID, a valid access token, a signed request, and the time the access token
 					// and signed request each expire
-					$state.go('sidemenu.home');
-					// console.log("STATE BITCHES");
+					//$state.go('sidemenu.home');
+					console.log("success BITCHES");
+					facebookConnectPlugin.getAccessToken(function(token){
+						Auth.$authWithOAuthToken("facebook", token).then(function(authData) {
+							console.log(authData);
+							$rootScope.authData = authData;
+
+							var updatedPerson = {
+								id: $rootScope.authData.facebook.id,
+								displayName: $rootScope.authData.facebook.displayName,
+								profilePhotoURL: $rootScope.authData.facebook.cachedUserProfile.picture.data.url,
+								gender: $rootScope.authData.facebook.cachedUserProfile.gender,
+								ageRange: $rootScope.authData.facebook.cachedUserProfile.age_range
+							}
+
+							Backend.$updatePerson($rootScope.authData.uid, updatedPerson);
+							$state.go('app.home');
+						}, function(error) {
+							console.error("ERROR: " + error);
+						});
+						
+					},function(error){
+						console.log(error);
+					});
+					//$state.go('sidemenu.home');
 
 				} else {
 
@@ -40,6 +63,7 @@
 						fb_access_token = authData.access_token;
 
 						Auth.$authWithOAuthToken("facebook", fb_access_token).then(function(authData) {
+							console.log(authData);
 							$rootScope.authData = authData;
 
 							var updatedPerson = {
@@ -51,13 +75,13 @@
 							}
 
 							Backend.$updatePerson($rootScope.authData.uid, updatedPerson);
-							$location.path('/');
+							$state.go('app.home');
 						}, function(error) {
 							console.error("ERROR: " + error);
 						});
 					});
 				}
-			});
+			}); 
 
 			var fbLoginSuccess = function(response) {
 				if (!response.authResponse){

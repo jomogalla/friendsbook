@@ -1,0 +1,14 @@
+<div class="bingo-board">
+	<a ui-sref="group.board.square({square: square})" class="bingo-square" ng-repeat="square in vm.board">
+		<div class="completed-square" ng-show="square.completed">
+			<i class="fa fa-check-circle fa-5x"></i>
+		</div>
+		{{square}}
+		<div class="square-header">
+			{{square.title}}
+		</div>
+		<div class="square-body">
+			{{square.body}}
+		</div>
+	</a>
+</div>

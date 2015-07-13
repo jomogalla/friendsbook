@@ -9,14 +9,14 @@
 	config.$inject = ['$stateProvider', '$urlRouterProvider'];
 	function config($stateProvider, $urlRouterProvider){
 		$stateProvider
-			.state('sidemenu', {
-				url : '/sidemenu',
+			.state('app', {
+				url : '/app',
 				templateUrl : 'navbar/sidemenu.html',
 				controller: 'SidemenuCtrl as menu',
 				abstract : true,
 				authRequired: true
 			})
-			.state('sidemenu.home', {
+			.state('app.home', {
 				url: '/home',
 				views: {
 					'pageContent' :{
@@ -26,7 +26,7 @@
 				},
 				authRequired: true
 			})
-			.state('sidemenu.profile', {
+			.state('app.profile', {
 				url: '/profile',
 				views: {
 					'pageContent' :{
@@ -36,7 +36,7 @@
 				},
 				authRequired: true
 			})
-			.state('sidemenu.invites', {
+			.state('app.invites', {
 				url: '/invites',
 				views: {
 					'pageContent' :{
@@ -52,6 +52,24 @@
 				url: '/group/:key',
 				templateUrl : 'group/group.html',
 				controller: 'GroupCtrl as vm',
+				authRequired: true
+    		})
+    		.state('group.board', {
+				url: '/board/:user',
+				templateUrl : 'group/board.html',
+				controller: 'GroupCtrl as vm',
+				authRequired: true
+    		})
+    		.state('group.board.square', {
+				url: '/square/:square',
+				templateUrl : 'group/square.html',
+				controller: 'SquareCtrl as vm',
+				authRequired: true
+    		})
+    		.state('square', {
+				url: '/square/:key/:user/:square',
+				templateUrl : 'square/square.html',
+				controller: 'SquareCtrl as vm',
 				authRequired: true
     		})
 			.state('create-group', {
@@ -91,11 +109,11 @@
 				controller: 'ChatCtrl as vm',
 				authRequired: true
     		});
-    		$urlRouterProvider.otherwise('/sidemenu/home');
+    		$urlRouterProvider.otherwise('/login');
 	}
 
-	runBlock.$inject = ['$rootScope', '$location', 'Auth', '$ionicPlatform', '$state'];
-	function runBlock($rootScope, $location, Auth, $ionicPlatform, $state){
+	runBlock.$inject = ['$rootScope', 'Auth', '$ionicPlatform', '$state'];
+	function runBlock($rootScope, Auth, $ionicPlatform, $state){
 
 		if(!$rootScope.authData){
 			$rootScope.authData = Auth.$getAuth();
@@ -165,7 +183,7 @@
 		function gotAccessToken(response){
 			Auth.$authWithOAuthToken("facebook", response).then(function(authData) {
 				$rootScope.authData = authData;
-				$state.go('sidemenu.home');
+				$state.go('app.home');
 			});
 		}
 		function notAccessToken(response){

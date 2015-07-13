@@ -16,11 +16,10 @@
 			</label>
 		</div>
 		<div class="list">
-			<div class="item item-avatar item-button-right" ng-repeat="friend in vm.friends | FriendSearch:vm.searchText">
+			<div class="item item-avatar" ng-repeat="friend in vm.friends | FriendSearch:vm.searchText">
                 <img class="userImg" uid="friend.uid">
 				<span class="userlink" uid="friend.uid"></span>
 				<span class="invitebutton" uid="friend.uid"></span>
-                <button class="button">hi</button>
 			</div>
 		</div>
         <a ui-sref="group({key: vm.group.$id})" class="button button-block button-positive"> create group</a>

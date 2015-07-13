@@ -3,7 +3,7 @@
 
 	angular
 		.module('app')
-		.factory('Auth', Auth);
+		.service('Auth', Auth);
 
 	Auth.$inject = ["$firebaseAuth"];
 	function Auth($firebaseAuth){

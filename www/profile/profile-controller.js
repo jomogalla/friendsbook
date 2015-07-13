@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('ProfileCtrl', ProfileCtrl);
 
-	ProfileCtrl.$inject = ['$routeParams', '$location', '$rootScope', 'Auth', 'Facebook', 'Backend'];
-	function ProfileCtrl($routeParams, $location, $rootScope, Auth, Facebook, Backend){
+	ProfileCtrl.$inject = ['$stateParams', '$location', '$rootScope', 'Auth', 'Facebook', 'Backend'];
+	function ProfileCtrl($stateParams, $location, $rootScope, Auth, Facebook, Backend){
 		var self = this;
 
 		self.logout = logout;
@@ -15,7 +15,7 @@
 		self.currentUser = false;
 		self.me = Backend.$getCurrentPerson();
 
-		if(!$routeParams.key){
+		if(!$stateParams.key){
 			self.profileId = $rootScope.authData.uid;
 			self.currentUser = true;
 		} else {

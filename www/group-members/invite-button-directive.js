@@ -22,6 +22,18 @@
 			scope.addToGroup = addToGroup;
 			scope.removeFromGroup = removeFromGroup;
 
+			var board = null;
+
+
+			Backend.$getDefaultBoard().$loaded(function(_board){
+				// TODO - remove this and make it work right
+				delete _board.$$conf;
+				delete _board.$priority;
+				delete _board.$id;
+
+				board = _board;
+			});
+
 			var members = scope.$parent.vm.members;
 			scope.memberStatus;
 
@@ -31,7 +43,7 @@
 			});
 
 			function addToGroup(friendId){
-				Backend.$inviteMember(scope.$parent.vm.groupId, friendId);
+				Backend.$inviteMember(scope.$parent.vm.groupId, friendId, board);
 			}
 
 			function removeFromGroup(friendId){

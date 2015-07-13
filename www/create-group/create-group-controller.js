@@ -21,9 +21,21 @@
 		function createGroup(){
 			var returnedGroup = Backend.$createGroup(self.group);
 				// Add the person to the group
-				Backend.$acceptMember(returnedGroup.$id, $rootScope.authData.uid).then(function(){
-					$location.path('/invite-members/' + returnedGroup.$id);	
+			Backend.$acceptMember(returnedGroup.$id, $rootScope.authData.uid).then(function(){
+
+				Backend.$getDefaultBoard().$loaded(function(_board){
+					// TODO - remove this and make it work right
+					delete _board.$$conf;
+					delete _board.$priority;
+					delete _board.$id;
+
+					Backend.$createPersonsBoard(returnedGroup.$id, $rootScope.authData.uid, _board);
 				});
+
+				// Backend.$createPersonsBoard(returnedGroup.$id, $rootScope.authData.uid, _board)
+
+				$location.path('/invite-members/' + returnedGroup.$id);	
+			});
 		}
 	}
 })();

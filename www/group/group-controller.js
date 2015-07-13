@@ -10,5 +10,10 @@
 		self = this;
 
 		self.group = Backend.$getGroup($stateParams.key);
+		self.board = Backend.$getDefaultBoard();
+		self.boards = Backend.$getGameBoards($stateParams.key);
+		self.members = Backend.$getMembers($stateParams.key);
+
+		self.currentlySelectedUser = self.members[0];
 	}
 })();

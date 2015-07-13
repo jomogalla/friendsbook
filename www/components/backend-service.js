@@ -30,7 +30,11 @@
 
 				// Message Methods
 				$getMessages: getMessages,
-				$addMessage: addMessage
+				$addMessage: addMessage,
+
+				$getGameBoards: getGameBoards,
+				$createPersonsBoard: createPersonsBoard,
+				$getDefaultBoard: getDefaultBoard
 			}
 			return service;
 
@@ -66,15 +70,17 @@
 			}
 
 			// ***** MEMBER FUNCTIONS ***** //
-			function inviteMember(groupId, uid){
+			function inviteMember(groupId, uid, board){
 				return $q.all(
 					ref.child('people').child(uid).child('groups').child(groupId).set(false),
-					ref.child('members').child(groupId).child(uid).set(false)
+					ref.child('members').child(groupId).child(uid).set(false),
+					ref.child('boards').child(groupId).child(uid).set(board)
 				);
 			}
 
 			function removeMember(groupId, uid){
 				return $q.all(
+					ref.child('boards').child(groupId).child(uid).remove(),
 					ref.child('people').child(uid).child('groups').child(groupId).remove(),
 					ref.child('members').child(groupId).child(uid).remove()
 				);
@@ -100,6 +106,23 @@
 					uid: $rootScope.authData.uid,
 					message: message
 				});
+			}
+
+			// BOARD
+			function createPersonsBoard(groupId, uid, board){
+				ref.child('boards').child(groupId).child(uid).set(board)
+			}
+
+			function getGameBoards(groupId){
+				return $firebaseObject(ref.child('boards').child('groupId'));
+			}
+
+			function getDefaultBoard(){
+				return $firebaseObject(ref.child('boards').child('newBoard'));
+			}
+
+			function createGameBoards(gameBoards) {
+				return ref.child('gameBoards').child($stateParams.key).push(gameBoards);
 			}
 		}
 })();
