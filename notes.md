@@ -2,5 +2,12 @@
 - Fix NavBar differences between Sidemenu pages and the rest of the pages
 - fix FB.getLoginStatus() called before calling FB.init() bug
 - move firebaseOAuthWithToken calls/methods to the Auth Service
-- change boards to defaultBoards in firebase
+- move boards to defaultBoards in firebase
 - fix logout
+- fix server hosting issues where you need to login/refresh multiple times
+- fix arrays displaying in the wrong order
+- add autoscroll to chat 
+- add loading icon to groups page before it has loaded
+- swap create group and invite members pages
+- add security rules to the boards object
+- 

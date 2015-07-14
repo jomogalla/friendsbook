@@ -7,14 +7,14 @@
     <ion-content>
 	<!-- <h3 class="padding center bar-energized">Your Pending Invites</h3> -->
     <ion-list>
-        <ion-item ng-repeat="(groupId, status) in vm.currentUser.groups" ng-if="!status">
+        <ion-item ng-repeat="(groupId, status) in vm.currentUser.groups" ng-show="!status">
             <span grouplink groupid="groupId"></span>
-           	<!-- <div class="row"> -->
-           		<div class="button-bar">
+           	<div class="row">
+           		<div class="button-bar padding">
 					<button class="button" ng-click="vm.rejectInvitation(groupId)">reject invitation</button>
 					<button class="button button-calm" ng-click="vm.acceptInvitation(groupId)">accept invitation</button>
 				</div>
-			<!-- </div> -->
+			</div>
         </ion-item>
     </ion-list>
 	</ion-content>

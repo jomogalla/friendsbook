@@ -22,7 +22,7 @@
 	<form ng-submit="vm.submitMessage()" name="chatInput" novalidate class="bar bar-footer item-input-inset">
   		<label class="item-input-wrapper">
     		<!-- <i class="icon ion-ios7-search placeholder-icon"></i> -->
-    		<input type="text" placeholder="friendsbook chat" ng-model="vm.inputText" name="inputText" required="">
+    		<input type="text" placeholder="friendsbook chat" ng-model="vm.inputText" name="inputText" required="" autofocus>
   		</label>
   		<button type="submit" class="button button-clear" ng-disabled="!chatInput.$valid">
     		send
