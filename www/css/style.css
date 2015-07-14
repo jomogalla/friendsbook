@@ -1,3 +1,13 @@
+.empty-view {
+  text-align: center;
+  font-size: large;
+  padding-top: 50px;
+}
+
+.group-head {
+  margin-top: 10px !important;
+}
+
 .invitebutton {
   float: right;
 }
@@ -148,8 +158,15 @@ h3 .active{
   text-align: center;
   padding: 10px;
 }
-.square-header {
 
+
+.square-header {
+  font-size: medium;
+  text-decoration: none !important;
+  font-weight: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .bingo-board {
@@ -179,6 +196,11 @@ h3 .active{
     height:auto;
     border: 1px solid white;
 }
+
+.completedSquare {
+  background-color: orange;
+}
+
 .bingo-square:before {
     content:'';
     float:left;

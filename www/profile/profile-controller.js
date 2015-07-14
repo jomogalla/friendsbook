@@ -27,7 +27,7 @@
 			Auth.$unauth();
 			Auth.$onAuth(function(authData){
 				$rootScope.authData = Auth.$getAuth();
-				$location.path('/login');
+				$state.go('login');
 			});		
 		}
 	}

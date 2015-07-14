@@ -5,15 +5,23 @@
 		.module('app')
 		.controller('GroupCtrl', GroupCtrl);
 
-	GroupCtrl.$inject = ['$routeParams', '$stateParams', 'Backend'];
-	function GroupCtrl($routeParams, $stateParams, Backend){
+	GroupCtrl.$inject = ['$stateParams', '$state', 'Backend'];
+	function GroupCtrl($stateParams, $state, Backend){
 		self = this;
+
+		self.$state = $state;
 
 		self.group = Backend.$getGroup($stateParams.key);
 		self.board = Backend.$getDefaultBoard();
-		self.boards = Backend.$getGameBoards($stateParams.key);
+
+		self.boards = null;
+
+		Backend.$getGameBoards($stateParams.key).$loaded(function(boards){
+			self.boards = boards;
+		});
+
 		self.members = Backend.$getMembers($stateParams.key);
 
-		self.currentlySelectedUser = self.members[0];
+		// self.currentlySelectedUser = self.members[0];
 	}
 })();

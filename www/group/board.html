@@ -1,14 +1,14 @@
 <div class="bingo-board">
-	<a ui-sref="group.board.square({square: square})" class="bingo-square" ng-repeat="square in vm.board">
-		<div class="completed-square" ng-show="square.completed">
-			<i class="fa fa-check-circle fa-5x"></i>
-		</div>
-		{{square}}
+	<a ui-sref="square({group: vm.groupId, board: vm.boardId, square: key})" class="bingo-square" ng-class="{'completedSquare': square.completed}" ng-repeat="(key, square) in vm.board">
+		{{key}}
 		<div class="square-header">
 			{{square.title}}
 		</div>
 		<div class="square-body">
 			{{square.body}}
+		</div>
+		<div class="completed-square" ng-show="square.completed">
+			<i class="ion-checkmark"></i>
 		</div>
 	</a>
 </div>

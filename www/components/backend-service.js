@@ -32,7 +32,10 @@
 				$getMessages: getMessages,
 				$addMessage: addMessage,
 
+				$getSquare: getSquare,
+				$makeGameBoard: makeGameBoard,
 				$getGameBoards: getGameBoards,
+				$getGameBoard: getGameBoard,
 				$createPersonsBoard: createPersonsBoard,
 				$getDefaultBoard: getDefaultBoard
 			}
@@ -71,6 +74,7 @@
 
 			// ***** MEMBER FUNCTIONS ***** //
 			function inviteMember(groupId, uid, board){
+				// debugger;
 				return $q.all(
 					ref.child('people').child(uid).child('groups').child(groupId).set(false),
 					ref.child('members').child(groupId).child(uid).set(false),
@@ -109,16 +113,28 @@
 			}
 
 			// BOARD
+			function getSquare(groupId, userId, squareId) {
+				return $firebaseObject(ref.child('boards').child(groupId).child(userId).child(squareId));
+			}
+
+			function makeGameBoard(name, board){
+				return ref.child('boards').child(name).set(board);
+			}
+
 			function createPersonsBoard(groupId, uid, board){
-				ref.child('boards').child(groupId).child(uid).set(board)
+				ref.child('boards').child(groupId).child(uid).set(board);
 			}
 
 			function getGameBoards(groupId){
-				return $firebaseObject(ref.child('boards').child('groupId'));
+				return $firebaseObject(ref.child('boards').child(groupId));
+			}
+
+			function getGameBoard(groupId, userId){
+				return $firebaseObject(ref.child('boards').child(groupId).child(userId));
 			}
 
 			function getDefaultBoard(){
-				return $firebaseObject(ref.child('boards').child('newBoard'));
+				return $firebaseObject(ref.child('boards').child('testes'));
 			}
 
 			function createGameBoards(gameBoards) {

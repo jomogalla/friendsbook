@@ -48,6 +48,18 @@
 				// controller: 'InviteCtrl as vm',
 				authRequired: true
 			})
+    		.state('app.createboard', {
+				url: '/createboard',
+				views: {
+					'pageContent' :{
+						templateUrl : 'create-board/create-board.html',
+						controller: 'CreateBoardCtrl as vm',
+					}
+				},
+				// templateUrl : 'invite/invite.html',
+				// controller: 'InviteCtrl as vm',
+				authRequired: true
+    		})
 			.state('group', {
 				url: '/group/:key',
 				templateUrl : 'group/group.html',
@@ -57,21 +69,21 @@
     		.state('group.board', {
 				url: '/board/:user',
 				templateUrl : 'group/board.html',
-				controller: 'GroupCtrl as vm',
+				controller: 'BoardCtrl as vm',
 				authRequired: true
     		})
-    		.state('group.board.square', {
-				url: '/square/:square',
+    		.state('square', {
+				url: 'group/:group/board/:board/square/:square',
 				templateUrl : 'group/square.html',
 				controller: 'SquareCtrl as vm',
 				authRequired: true
     		})
-    		.state('square', {
-				url: '/square/:key/:user/:square',
-				templateUrl : 'square/square.html',
-				controller: 'SquareCtrl as vm',
-				authRequired: true
-    		})
+    // 		.state('square', {
+				// url: '/square/:key/:user/:square',
+				// templateUrl : 'group/square.html',
+				// controller: 'SquareCtrl as vm',
+				// authRequired: true
+    // 		})
 			.state('create-group', {
 				url: '/create-group',
 				templateUrl: 'create-group/create-group.html',
