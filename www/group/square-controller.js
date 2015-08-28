@@ -18,15 +18,11 @@
 
 		Backend.$getSquare($stateParams.group, $stateParams.board, $stateParams.square).$loaded(function(square){
 			self.square  = square;
-		})
+		});
 
 		function completeSquare (){
 			self.square.completed = true;
 			self.square.$save();
-
-			// window.setTimeout(function(){
-			// 	$state.go('group.board({key: self.groupId, user: self.boardId})');
-			// }, 1500);
 		}
 
 	}

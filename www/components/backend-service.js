@@ -118,7 +118,7 @@
 			}
 
 			function makeGameBoard(name, board){
-				return ref.child('boards').child(name).set(board);
+				return ref.child('defaultBoards').child(name).set(board);
 			}
 
 			function createPersonsBoard(groupId, uid, board){

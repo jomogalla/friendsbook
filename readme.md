@@ -1,6 +1,19 @@
 # friendsbook
 A group based chat application, utilizing Facebook oAuth for authentication, AngularJS for the front-end and Firebase for the backend.
 
+
+### Setup
+1. Clone from Github to your machine
+2. Due to facebook being facebook, edit etc/hosts
+    - enter ``` sudo nano /etc/hosts ``` into terminal
+    - In Nano add ``` 127.0.0.1       local.domogalla.org ``` to the bottom 
+    - Hit 'Ctrl + X' to Quit, saving changes
+3. Navigate to the Root level of where you cloned the repo
+4. Type ``` ionic serve ```
+5. Open web browser and navigate to ``` local.domogalla.org:8100/#/ ```
+6. Voila - now edit on your local machine, and see the changes happen live!
+
+
 ### Database Schema
 
 ##### Groups

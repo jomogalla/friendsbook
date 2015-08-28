@@ -10,4 +10,3 @@
 - add loading icon to groups page before it has loaded
 - swap create group and invite members pages
 - add security rules to the boards object
-- 
