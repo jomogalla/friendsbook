@@ -1,0 +1,39 @@
+<ion-view>
+	<!-- <div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div> -->
+	<ion-nav-buttons side="left">
+		<button class="button button-clear" ui-sref="app.home">
+			<i class="icon ion-ios-arrow-left"></i>
+		</button>
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<i class="icon ion-pizza"></i>
+	</ion-nav-title>
+	<ion-nav-buttons side="right">
+		<a class="button button-clear" ui-sref="chat({key: vm.group.$id})">
+			<i class="icon ion-chatbubbles"></i>
+		</a>
+    </ion-nav-buttons>
+
+    <ion-content >
+
+		<h3 class="lead center">
+			{{vm.group.title}}
+		</h3>
+		<div class="button-bar">
+			<a ui-sref="sidemenu.home" class="button" ng-repeat="(member, value) in vm.members"><span chatlink uid="member"></span></a>
+		</div>
+		<div class="bingo-board">
+			<a ui-sref="chat({key: vm.group.$id})"class="bingo-square" ng-repeat="square in vm.board" ng-click="vm.completeSquare(square)">
+				<div class="completed-square" ng-show="square.completed">
+					<i class="fa fa-check-circle fa-5x"></i>
+				</div>
+				<div class="square-header">
+					{{square.title}}
+				</div>
+				<div class="square-body">
+					{{square.body}}
+				</div>
+			</a>
+		<!-- <button class="button" ui-sref="settings({key: vm.group.$id})"><i class="icon ion-gear-a"></i> Settings</button> -->
+	</ion-content>
+</ion-view>

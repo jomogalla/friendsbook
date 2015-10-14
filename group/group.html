@@ -1,7 +1,9 @@
 <div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div>
 
 <hr>
-
-<p class="lead">
-	wellp there aint much here right meow
-</p>
+<div class="row">
+	<div ng-repeat="(key, board) in vm.boards" class="board-wrap col-md-4">
+		<span class="userlink" uid="key"></span>
+		<div ng-include="'board/board.html'"></div>
+	</div>
+</div>

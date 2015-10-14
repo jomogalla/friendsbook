@@ -5,10 +5,19 @@
 
 	<div class="navbar-left">
 		<ul class="nav navbar-nav list-inline" ng-show="!nav.isActive('login')">
-			<li ng-class="{active:nav.isActive('profile')}" role="presentation"><a href="#/profile">profile</a></li>
-			<li ng-class="{active:nav.isActive('groups')}" role="presentation"><a href="#/groups">groups</a></li>
-			<li role="presentation" ng-show="nav.invites" ng-class="{active:nav.isActive('invites')}">
-				<a href="#/invites">{{nav.invites}} new group invite<span ng-if="nav.invites > 1">s</span>
+			<li ng-class="{active:nav.isActive('profile')}" role="presentation">
+				<a href="#/profile">profile</a>
+			</li>
+			<li ng-class="{active:nav.isActive('groups')}" role="presentation">
+				<a href="#/groups">groups</a>
+			</li>
+			<li >	
+				<a href="#/create-group" ng-class="{active:nav.isActive('create-group')}" href="#/create-group">start new group</a>
+			</li>
+			<li role="presentation" ng-show="nav.invites" ng-class="{active:nav.isActive('invites')}" class="">
+				<a href="#/invites">
+					<span class="badge">{{nav.invites}}</span> 
+					new group invite<span ng-if="nav.invites > 1">s</span>
 				</a>
 			</li>
 		</ul>

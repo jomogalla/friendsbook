@@ -1,0 +1,31 @@
+<ion-view>
+	<ion-nav-buttons side="left">
+		<button class="button button-clear" ui-sref="app.home">
+			<i class="icon ion-ios-arrow-left"></i>
+		</button>
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<i class="icon ion-pizza"></i>
+	</ion-nav-title>
+	<ion-nav-buttons side="right">
+		<a class="button button-clear" ui-sref="chat({key: vm.group.$id})">
+			<i class="icon ion-chatbubbles"></i>
+		</a>
+    </ion-nav-buttons>
+
+    <ion-content >
+		<h3 class="lead center group-head">
+			{{vm.group.title}}
+		</h3>
+		<div class="button-bar">
+			<button class="button" ng-class="{'button-royal': vm.$state.params.user === member}" ng-repeat="(member, value) in vm.members" ng-click="vm.currentlySelectedUser = '{{member}}'" ui-sref="group.board({user: member})">
+				<span chatlink uid="member"></span>
+			</button>
+		</div>
+		<ui-view>
+			<div class="empty-view">
+				Select A User 
+			</div>
+		</ui-view>
+	</ion-content>
+</ion-view>

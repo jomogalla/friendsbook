@@ -1,0 +1,3 @@
+<button ng-if="memberStatus === undefined" class="button button-outline button-stable" ng-click="addToGroup(uid)">&nbsp;invite&nbsp;</button>
+<button ng-if="memberStatus !== undefined && !memberStatus" class="button button-outline button-energized" ng-click="removeFromGroup(uid)">invited</button>
+<button ng-show="memberStatus" class="button button-balanced" ng-click="removeFromGroup(uid)">joined&nbsp;</button>

@@ -1,0 +1,97 @@
+2015-05-11 22:56:59.893 friendsonic[60240:978798] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Data/Application/6A1D405C-BAC9-48E1-A694-60B4E631DB28/Library/Cookies/Cookies.binarycookies
+2015-05-11 22:57:00.210 friendsonic[60240:978798] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 22:57:00.210 friendsonic[60240:978798] Multi-tasking -> Device: YES, App: YES
+2015-05-11 22:57:00.239 friendsonic[60240:978798] Unlimited access to network resources
+2015-05-11 22:57:00.597 friendsonic[60240:978798] Init FacebookConnect Session
+2015-05-11 22:57:00.609 friendsonic[60240:978798] [CDVTimer][facebookconnectplugin] 11.370003ms
+2015-05-11 22:57:00.609 friendsonic[60240:978798] [CDVTimer][TotalPluginStartup] 11.937022ms
+2015-05-11 22:57:00.866 friendsonic[60240:978798] Resetting plugins due to page load.
+2015-05-11 22:57:01.574 friendsonic[60240:978798] Finished load of: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Bundle/Application/A990EC11-475A-4B16-8740-925A58E78232/friendsonic.app/www/index.html#/sidemenu/home
+2015-05-11 22:58:27.949 friendsonic[60428:980779] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Data/Application/9CB3CE5D-782E-45E5-9B6B-A2B81925CB23/Library/Cookies/Cookies.binarycookies
+2015-05-11 22:58:28.032 friendsonic[60428:980779] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 22:58:28.032 friendsonic[60428:980779] Multi-tasking -> Device: YES, App: YES
+2015-05-11 22:58:28.036 friendsonic[60428:980779] Unlimited access to network resources
+2015-05-11 22:58:28.126 friendsonic[60428:980779] Init FacebookConnect Session
+2015-05-11 22:58:28.129 friendsonic[60428:980779] [CDVTimer][facebookconnectplugin] 2.979040ms
+2015-05-11 22:58:28.129 friendsonic[60428:980779] [CDVTimer][TotalPluginStartup] 3.120005ms
+2015-05-11 22:58:28.201 friendsonic[60428:980779] Resetting plugins due to page load.
+2015-05-11 22:58:28.589 friendsonic[60428:980779] Finished load of: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Bundle/Application/21DA43E6-5799-435D-8CA0-DFBBACFBE437/friendsonic.app/www/index.html#/login
+2015-05-11 22:58:29.948 friendsonic[60428:980779] -[__NSDictionaryM objectAtIndex:]: unrecognized selector sent to instance 0x7a786160
+2015-05-11 22:58:29.955 friendsonic[60428:980779] *** WebKit discarded an uncaught exception in the webView:decidePolicyForNavigationAction:request:frame:decisionListener: delegate: <NSInvalidArgumentException> -[__NSDictionaryM objectAtIndex:]: unrecognized selector sent to instance 0x7a786160
+2015-05-11 22:58:47.991 friendsonic[60428:980779] -[__NSDictionaryM objectAtIndex:]: unrecognized selector sent to instance 0x7a78b580
+2015-05-11 22:58:47.991 friendsonic[60428:980779] *** WebKit discarded an uncaught exception in the webView:decidePolicyForNavigationAction:request:frame:decisionListener: delegate: <NSInvalidArgumentException> -[__NSDictionaryM objectAtIndex:]: unrecognized selector sent to instance 0x7a78b580
+2015-05-11 23:01:30.769 friendsonic[60428:984402] Terminating since there is no system app.
+2015-05-11 23:01:44.742 friendsonic[60680:985214] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Data/Application/B8870F79-60C6-424D-A0AA-F5549CF18061/Library/Cookies/Cookies.binarycookies
+2015-05-11 23:01:44.813 friendsonic[60680:985214] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 23:01:44.813 friendsonic[60680:985214] Multi-tasking -> Device: YES, App: YES
+2015-05-11 23:01:44.815 friendsonic[60680:985214] Unlimited access to network resources
+2015-05-11 23:01:44.882 friendsonic[60680:985214] Init FacebookConnect Session
+2015-05-11 23:01:44.885 friendsonic[60680:985214] [CDVTimer][facebookconnectplugin] 3.256023ms
+2015-05-11 23:01:44.885 friendsonic[60680:985214] [CDVTimer][TotalPluginStartup] 3.412962ms
+2015-05-11 23:01:44.946 friendsonic[60680:985214] Resetting plugins due to page load.
+2015-05-11 23:01:45.401 friendsonic[60680:985214] Finished load of: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Bundle/Application/CF0744A7-AE51-4E71-8BF7-B013D4893932/friendsonic.app/www/index.html#/login
+2015-05-11 23:02:16.833 friendsonic[60680:985214] -[__NSDictionaryM objectAtIndex:]: unrecognized selector sent to instance 0x7c1d29c0
+2015-05-11 23:02:16.834 friendsonic[60680:985214] *** WebKit discarded an uncaught exception in the webView:decidePolicyForNavigationAction:request:frame:decisionListener: delegate: <NSInvalidArgumentException> -[__NSDictionaryM objectAtIndex:]: unrecognized selector sent to instance 0x7c1d29c0
+2015-05-11 23:04:25.542 friendsonic[60680:988049] Communications error: <OS_xpc_error: <error: 0x32025f4> { count = 1, contents =
+	"XPCErrorDescription" => <string: 0x320283c> { length = 22, contents = "Connection interrupted" }
+}>
+2015-05-11 23:05:47.533 friendsonic[60977:989903] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Data/Application/20A125B1-36FA-4E12-868F-2E554E6A4AF9/Library/Cookies/Cookies.binarycookies
+2015-05-11 23:05:47.607 friendsonic[60977:989903] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 23:05:47.607 friendsonic[60977:989903] Multi-tasking -> Device: YES, App: YES
+2015-05-11 23:05:47.609 friendsonic[60977:989903] Unlimited access to network resources
+2015-05-11 23:05:47.685 friendsonic[60977:989903] Init FacebookConnect Session
+2015-05-11 23:05:47.688 friendsonic[60977:989903] [CDVTimer][facebookconnectplugin] 3.768027ms
+2015-05-11 23:05:47.688 friendsonic[60977:989903] [CDVTimer][TotalPluginStartup] 3.906012ms
+2015-05-11 23:05:47.753 friendsonic[60977:989903] Resetting plugins due to page load.
+2015-05-11 23:05:48.195 friendsonic[60977:989903] Finished load of: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Bundle/Application/5F918409-6C6D-47A4-B445-1AFBD982FA0F/friendsonic.app/www/index.html#/login
+2015-05-11 23:05:56.867 friendsonic[60977:989903] -[__NSDictionaryM objectAtIndex:]: unrecognized selector sent to instance 0x797c2e40
+2015-05-11 23:05:56.868 friendsonic[60977:989903] *** WebKit discarded an uncaught exception in the webView:decidePolicyForNavigationAction:request:frame:decisionListener: delegate: <NSInvalidArgumentException> -[__NSDictionaryM objectAtIndex:]: unrecognized selector sent to instance 0x797c2e40
+2015-05-11 23:06:16.274 friendsonic[60977:989903] -[__NSDictionaryM objectAtIndex:]: unrecognized selector sent to instance 0x796e09e0
+2015-05-11 23:06:16.275 friendsonic[60977:989903] *** WebKit discarded an uncaught exception in the webView:decidePolicyForNavigationAction:request:frame:decisionListener: delegate: <NSInvalidArgumentException> -[__NSDictionaryM objectAtIndex:]: unrecognized selector sent to instance 0x796e09e0
+2015-05-12 12:14:09.262 friendsonic[91246:1187140] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Data/Application/8799D302-EABB-4CD0-82EC-86E5AA195354/Library/Cookies/Cookies.binarycookies
+2015-05-12 12:14:09.348 friendsonic[91246:1187140] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-12 12:14:09.349 friendsonic[91246:1187140] Multi-tasking -> Device: YES, App: YES
+2015-05-12 12:14:09.351 friendsonic[91246:1187140] Unlimited access to network resources
+2015-05-12 12:14:09.423 friendsonic[91246:1187140] Init FacebookConnect Session
+2015-05-12 12:14:09.426 friendsonic[91246:1187140] [CDVTimer][facebookconnectplugin] 2.587020ms
+2015-05-12 12:14:09.426 friendsonic[91246:1187140] [CDVTimer][TotalPluginStartup] 2.734005ms
+2015-05-12 12:14:09.498 friendsonic[91246:1187140] Resetting plugins due to page load.
+2015-05-12 12:14:09.983 friendsonic[91246:1187140] Finished load of: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Bundle/Application/4F0346CE-4BCC-4884-8424-1DE62AB01818/friendsonic.app/www/index.html#/sidemenu/home
+2015-05-13 09:28:42.048 friendsonic[76792:1459232] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Data/Application/49EBC5ED-B36E-4E22-89FA-6BEECFFC05B3/Library/Cookies/Cookies.binarycookies
+2015-05-13 09:28:42.315 friendsonic[76792:1459232] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-13 09:28:42.316 friendsonic[76792:1459232] Multi-tasking -> Device: YES, App: YES
+2015-05-13 09:28:42.329 friendsonic[76792:1459232] Unlimited access to network resources
+2015-05-13 09:28:42.657 friendsonic[76792:1459232] Init FacebookConnect Session
+2015-05-13 09:28:42.667 friendsonic[76792:1459232] [CDVTimer][facebookconnectplugin] 9.566009ms
+2015-05-13 09:28:42.667 friendsonic[76792:1459232] [CDVTimer][TotalPluginStartup] 10.109007ms
+2015-05-13 09:28:42.918 friendsonic[76792:1459232] Resetting plugins due to page load.
+2015-05-13 09:28:43.376 friendsonic[76792:1459232] Finished load of: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Bundle/Application/B7CC0848-ACC1-4CFF-AFAE-17739B48CD14/friendsonic.app/www/index.html#/sidemenu/home
+2015-05-13 09:29:06.279 friendsonic[77209:1460150] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Data/Application/2D5FF443-C853-4DE4-B36D-30C82AEFB21D/Library/Cookies/Cookies.binarycookies
+2015-05-13 09:29:06.404 friendsonic[77209:1460150] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-13 09:29:06.404 friendsonic[77209:1460150] Multi-tasking -> Device: YES, App: YES
+2015-05-13 09:29:06.408 friendsonic[77209:1460150] Unlimited access to network resources
+2015-05-13 09:29:06.492 friendsonic[77209:1460150] Init FacebookConnect Session
+2015-05-13 09:29:06.496 friendsonic[77209:1460150] [CDVTimer][facebookconnectplugin] 3.346026ms
+2015-05-13 09:29:06.496 friendsonic[77209:1460150] [CDVTimer][TotalPluginStartup] 3.586948ms
+2015-05-13 09:29:06.548 friendsonic[77209:1460150] Resetting plugins due to page load.
+2015-05-13 09:29:06.994 friendsonic[77209:1460150] Finished load of: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Bundle/Application/D141876E-8C64-4394-A644-D0F0C28492F6/friendsonic.app/www/index.html#/sidemenu/home
+2015-05-13 09:29:13.296 friendsonic[77209:1460155] Terminating since there is no system app.
+2015-06-01 23:27:10.150 friendsonic[12263:835021] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Data/Application/CA43EA86-FB08-4B0B-8C6F-F1ABA6610A1D/Library/Cookies/Cookies.binarycookies
+2015-06-01 23:27:10.390 friendsonic[12263:835021] Apache Cordova native platform version 3.8.0 is starting.
+2015-06-01 23:27:10.390 friendsonic[12263:835021] Multi-tasking -> Device: YES, App: YES
+2015-06-01 23:27:10.404 friendsonic[12263:835021] Unlimited access to network resources
+2015-06-01 23:27:10.693 friendsonic[12263:835021] Init FacebookConnect Session
+2015-06-01 23:27:10.703 friendsonic[12263:835021] [CDVTimer][facebookconnectplugin] 8.696020ms
+2015-06-01 23:27:10.703 friendsonic[12263:835021] [CDVTimer][TotalPluginStartup] 9.338975ms
+2015-06-01 23:27:10.948 friendsonic[12263:835021] Resetting plugins due to page load.
+2015-06-01 23:27:11.433 friendsonic[12263:835021] Finished load of: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Bundle/Application/9794E635-69F8-472C-A7EB-348FB38C2AD6/friendsonic.app/www/index.html
+2015-06-17 21:13:33.961 friendsonic[73299:4685195] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Data/Application/674B6F9B-8A5A-4A44-8628-A921D6E2E876/Library/Cookies/Cookies.binarycookies
+2015-06-17 21:13:34.073 friendsonic[73299:4685195] Apache Cordova native platform version 3.8.0 is starting.
+2015-06-17 21:13:34.073 friendsonic[73299:4685195] Multi-tasking -> Device: YES, App: YES
+2015-06-17 21:13:34.077 friendsonic[73299:4685195] Unlimited access to network resources
+2015-06-17 21:13:34.186 friendsonic[73299:4685195] Init FacebookConnect Session
+2015-06-17 21:13:34.191 friendsonic[73299:4685195] [CDVTimer][facebookconnectplugin] 4.514992ms
+2015-06-17 21:13:34.191 friendsonic[73299:4685195] [CDVTimer][TotalPluginStartup] 4.698038ms
+2015-06-17 21:13:34.295 friendsonic[73299:4685195] Resetting plugins due to page load.
+2015-06-17 21:13:34.849 friendsonic[73299:4685195] Finished load of: file:///Users/j/Library/Developer/CoreSimulator/Devices/198F169F-1879-4148-A690-6E898203462B/data/Containers/Bundle/Application/43B60344-9F67-46C9-90AD-E86212ECEFEC/friendsonic.app/www/index.html#/sidemenu/home
+2015-06-17 21:13:39.209 friendsonic[73299:4685195] THREAD WARNING: ['FacebookConnectPlugin'] took '68.260742' ms. Plugin should use a background thread.

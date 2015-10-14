@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+		<!-- <link href="./normalize.css" rel="stylesheet"> -->
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
+		<!-- <link href="./style.css" rel="stylesheet"> -->
+		<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+
+		<!-- ionic/angularjs js -->
+		<script src="lib/ionic/js/ionic.bundle.js"></script>
+
+		<!-- oAuth for Ionic -->
+		<!-- <script src="lib/ng-cordova-oauth.js"></script> -->
+
+		<!-- cordova script (this will be a 404 during development) -->
+		<script src="cordova.js"></script>
+
+		<!-- <script src="lib/facebookConnectPlugin.js"></script> -->
+
+		<!-- cordova -->
+		<!-- // <script src="phonegap.js"></script> -->
+		<!-- cordova facebook plugin -->
+		<!-- <script src="lib/angular-openfb/angular-openfb.js"></script> -->
+		<!-- <script src="vendorJS/facebookConnectPlugin-angular.js"></script> -->
+		<!-- facebook js sdk -->
+		<!-- // <script src="facebook-js-sdk.js"></script> -->
+
+		<title>friendsbook</title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+
+
+
+		<script src="./app.js"></script>
+
+		<script src="./login/login-controller.js"></script>
+
+		<script src="./home/home-controller.js"></script>
+		<script src="./navbar/navbar-controller.js"></script>
+		<script src="./navbar/sub-navbar-controller.js"></script>
+		<script src="./navbar/sidemenu-controller.js"></script>
+		<script src="./profile/profile-controller.js"></script>
+		<script src="./invite/invite-controller.js"></script>
+		<script src="./create-board/create-board-controller.js"></script>
+
+		<script src="./create-group/create-group-controller.js"></script>
+		<script src="./group/group-controller.js"></script>
+		<script src="./chat/chat-controller.js"></script>
+		<script src="./chat/chatlink-directive.js"></script>
+		<script src="./groups/groups-controller.js"></script>
+		<script src="./group/square-controller.js"></script>
+		<script src="./group/board-controller.js"></script>
+		<script src="./group-members/group-members-controller.js"></script>
+		<script src="./group-members/invite-members-controller.js"></script>
+		<script src="./group-members/invite-button-directive.js"></script>
+		<script src="./group-settings/group-settings-controller.js"></script>
+
+		<script src="./components/userlink-directive.js"></script>
+		<script src="./components/user-service.js"></script>
+		<script src="./components/userImg-directive.js"></script>
+		<script src="./components/grouplink-directive.js"></script>
+		<script src="./group-members/friends-filter.js"></script>
+		<script src="./components/auth-factory.js"></script>
+		<script src="./components/facebook-service.js"></script>
+		<script src="./components/backend-service.js"></script>
+
+	</head>
+	<body ng-app="app" class="platform-browser platform-cordova platform-webview">
+		<!-- <nav class="navbar" ng-include="'navbar/navbar.html'" ng-controller="NavbarCtrl as nav">
+		</nav>
+
+		<div class="container">
+			<div ng-view=""></div>
+		</div> -->
+		<ion-nav-bar class="bar bar-header bar-assertive">
+    	</ion-nav-bar>
+	    <!--
+	      The views will be rendered in the <ion-nav-view> directive below
+	      Templates are in the /templates folder (but you could also
+	      have templates inline in this html file if you'd like).
+	    -->
+    	<ion-nav-view></ion-nav-view>
+
+		<div id="fb-root"></div>
+
+	    <!-- Need to place at the end to prevent appendChild error -->
+	    <script src="lib/facebookConnectPlugin.js"></script>
+	</body>
+</html>

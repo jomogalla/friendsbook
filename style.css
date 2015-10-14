@@ -7,6 +7,92 @@ nav{
 	/*background-color: #BDE8FF;*/
 	background-color: white;
 }
+
+/* BINGO BOARD */
+.board-wrap {
+  margin-top: 30px;
+}
+
+.bingo-board {
+  display: flex;
+  flex-wrap: wrap;
+  /*background-color: green;*/
+}
+.bingo-square {
+  width: 20%;
+  text-align: center;
+  padding: 10px;
+}
+
+.square-detail {
+  text-align: center;
+  border: 3px solid tomato;
+  background-color: #FB9684;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.close-square {
+  width: auto;
+  text-align: left;
+}
+
+
+
+.completed {
+  border-color: orange;
+}
+
+
+.square-header {
+  font-size: medium;
+  text-decoration: none !important;
+  font-weight: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.bingo-board {
+    padding: 0;
+    margin: 0;
+    margin-top: 50px;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+   
+    line-height:30px;
+}
+.bingo-square {
+    background: tomato;
+    /*margin: 5px;*/
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    flex: 1 0 auto;
+    height:auto;
+    border: 1px solid white;
+}
+
+.completedSquare {
+  background-color: orange;
+}
+
+.bingo-square:before {
+    content:'';
+    float:left;
+    padding-top:100%;
+}
+
 .label{
 	margin-left: 5px;
 }

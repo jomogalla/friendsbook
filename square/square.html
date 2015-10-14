@@ -1,0 +1,22 @@
+
+<ion-view>
+	<ion-nav-buttons side="left">
+		<button class="button button-clear" ui-sref="group.board({key: vm.groupId, user: vm.boardId})">
+			<i class="icon ion-ios-arrow-left"></i>
+		</button>
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<i class="icon ion-pizza"></i>
+	</ion-nav-title>
+    <ion-content class="padding">
+    	<h1>{{vm.square.title}}</h1>
+
+
+    	<button class="button button-block button-balanced" ng-click="vm.completeSquare()" ng-show="!vm.square.completed">
+  			Complete Square
+		</button>
+		<button class="button button-block button-royal" ng-show="vm.square.completed">
+  			Square Completed!
+		</button>
+	</ion-content>
+</ion-view>

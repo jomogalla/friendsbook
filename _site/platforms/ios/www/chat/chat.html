@@ -1,0 +1,40 @@
+<ion-view>
+	<!-- <div ng-include="'navbar/sub-navbar.html'" ng-controller="SubNavCtrl as subnav"></div> -->
+	<ion-nav-buttons side="left">
+		<button class="button button-clear" ui-sref="group({key: vm.group.$id})">
+			<i class="icon ion-ios-arrow-left"></i>
+		</button>
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<i class="icon ion-pizza"></i>
+	</ion-nav-title>
+    <ion-content class="padding">
+		<div class="chat">
+				<span ng-show="!vm.messages" class="glyphicon glyphicon-hourglass spin"></span>
+				<ul class="list-unstyled">
+					<li ng-repeat="message in vm.messages" class="animate-repeat" ng-class="{userMessage: message.uid === vm.currentUser.$id}">
+						<span class="text-name" chatlink uid="message.uid"></span>
+						<span class="text-body"> {{message.message}}</span>
+					</li>
+				</ul>
+		</div>
+	</ion-content>
+	<form ng-submit="vm.submitMessage()" name="chatInput" novalidate class="bar bar-footer item-input-inset">
+  		<label class="item-input-wrapper">
+    		<!-- <i class="icon ion-ios7-search placeholder-icon"></i> -->
+    		<input type="text" placeholder="friendsbook chat" ng-model="vm.inputText" name="inputText" required="" autofocus>
+  		</label>
+  		<button type="submit" class="button button-clear" ng-disabled="!chatInput.$valid">
+    		send
+  		</button>
+	</form>
+</ion-view>
+<script>
+	// Cheater script to autoscroll chat to the bottom
+	var messageList = $('.well ul');
+	var well = $('.well');
+
+	messageList.bind('DOMNodeInserted', function(){
+		well[0].scrollTop = well[0].scrollHeight;
+	});
+</script>

@@ -5,7 +5,7 @@
 		.module('app')
 		.service('Backend', Backend);
 
-		Backend.$inject = ['$firebaseObject', '$firebaseArray', '$firebaseAuth', '$rootScope', '$routeParams', '$q'];
+		Backend.$inject = ['$firebaseObject', '$firebaseArray', '$firebaseAuth', '$rootScope', '$routeParams','$q'];
 		function Backend($firebaseObject, $firebaseArray, $firebaseAuth, $rootScope, $routeParams, $q){
 			var ref = new Firebase("https://blistering-torch-1950.firebaseio.com");
 
@@ -30,7 +30,14 @@
 
 				// Message Methods
 				$getMessages: getMessages,
-				$addMessage: addMessage
+				$addMessage: addMessage,
+
+				$getSquare: getSquare,
+				$makeGameBoard: makeGameBoard,
+				$getGameBoards: getGameBoards,
+				$getGameBoard: getGameBoard,
+				$createPersonsBoard: createPersonsBoard,
+				$getDefaultBoard: getDefaultBoard
 			}
 			return service;
 
@@ -53,7 +60,7 @@
 
 			// ***** GROUP FUNCTIONS ***** //
 			function createGroup(groupObject){
-				return $firebaseObject(ref.child('groups').push(groupObject));			
+				return $firebaseObject(ref.child('groups').push(groupObject));
 			}
 
 			function saveGroup(groupObject){
@@ -66,15 +73,18 @@
 			}
 
 			// ***** MEMBER FUNCTIONS ***** //
-			function inviteMember(groupId, uid){
+			function inviteMember(groupId, uid, board){
+				// debugger;
 				return $q.all(
 					ref.child('people').child(uid).child('groups').child(groupId).set(false),
-					ref.child('members').child(groupId).child(uid).set(false)
+					ref.child('members').child(groupId).child(uid).set(false),
+					ref.child('boards').child(groupId).child(uid).set(board)
 				);
 			}
 
 			function removeMember(groupId, uid){
 				return $q.all(
+					ref.child('boards').child(groupId).child(uid).remove(),
 					ref.child('people').child(uid).child('groups').child(groupId).remove(),
 					ref.child('members').child(groupId).child(uid).remove()
 				);
@@ -100,6 +110,35 @@
 					uid: $rootScope.authData.uid,
 					message: message
 				});
+			}
+
+			// BOARD
+			function getSquare(groupId, userId, squareId) {
+				return $firebaseObject(ref.child('boards').child(groupId).child(userId).child(squareId));
+			}
+
+			function makeGameBoard(name, board){
+				return ref.child('defaultBoards').child(name).set(board);
+			}
+
+			function createPersonsBoard(groupId, uid, board){
+				ref.child('boards').child(groupId).child(uid).set(board);
+			}
+
+			function getGameBoards(groupId){
+				return $firebaseObject(ref.child('boards').child(groupId));
+			}
+
+			function getGameBoard(groupId, userId){
+				return $firebaseObject(ref.child('boards').child(groupId).child(userId));
+			}
+
+			function getDefaultBoard(){
+				return $firebaseObject(ref.child('boards').child('testes'));
+			}
+
+			function createGameBoards(gameBoards) {
+				return ref.child('gameBoards').child($routeParams.key).push(gameBoards);
 			}
 		}
 })();

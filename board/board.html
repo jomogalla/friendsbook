@@ -1,0 +1,25 @@
+<div class="bingo-board">
+	<a class="bingo-square" ng-class="{'completedSquare': square.completed}" ng-repeat="(key, square) in board" ng-click="board.selectedSquare = square; board.selectedSquareIndex = key" ng-show="!board.selectedSquare">
+		<div class="square-header">
+			{{square.title}}
+		</div>
+		<div class="square-body">
+			{{square.body}}
+		</div>
+		<div class="completed-square" ng-show="square.completed">
+			<i class="glyphicon glyphicon-ok"></i>
+		</div>
+	</a>
+</div>
+<div ng-show="board.selectedSquare" class="square-detail" ng-class="{'completed': board.selectedSquare.completed}">
+	<span class="close-square btn btn-link" ng-click="board.selectedSquare = null">
+		<i class="glyphicon glyphicon-remove"></i>
+	</span>
+	<button ng-click="vm.completeSquare(key, board.selectedSquareIndex)"></button>
+	<div class="square-header">
+	{{board.selectedSquare.title}}
+	</div>
+	{{board.selectedSquare.body}}
+	<button class="btn" ng-show="board.selectedSquare.completed">Uncheck Square</button>
+	<button class="btn" ng-show="!board.selectedSquare.completed">Complete Square</button>
+</div>

@@ -1,0 +1,13 @@
+{
+    "com.phonegap.plugins.facebookconnect": {
+        "source": {
+            "type": "local",
+            "path": "/Users/j/Downloads/phonegap-facebook-plugin"
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_ID": "679172528872512",
+            "APP_NAME": "friendsboook"
+        }
+    }
+}
