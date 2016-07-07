@@ -1,4 +1,5 @@
 ##### Features
 
 ##### Bugs
-~~Squashed Bug~~
+[X] ~~Squashed Bug~~
+[ ] Open Bug
