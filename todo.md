@@ -1,4 +1,4 @@
 ### Features
 
 ### Bugs
-~~ Squashed Bug ~~
+~~Squashed Bug~~
